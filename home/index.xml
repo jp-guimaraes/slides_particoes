@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Homes on Fontes</title>
+    <link>https://jp-guimaraes.github.io/slides_particoes/home/</link>
+    <description>Recent content in Homes on Fontes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://jp-guimaraes.github.io/slides_particoes/home/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/01_intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/01_intro/</guid>
+      <description> Objetivos Entender o conceito de partições e sistemas de arquivos.
+Conhecer os sistemas de arquivos mais usados atualmente, suas vantagens e desvantagens.
+ Sumário  O que são partições? O que são sistemas de arquivos? MBR,GPT Formatação   </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/02_particoes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/02_particoes/</guid>
+      <description> Partições O que são?
+ Conceito Divisões lógicas de um armazenamento secundário
+HDs, pendrives, ssd
+  Sistemas de arquivo Sistemas operacionais diferentes usam sistemas de arquivos diferentes
+Cada partição pode ter um sistema de arquivo diferente
+ Vantagens em usar partições? Modularização de armazenamento
+Multiplos sistemas operacionais (veremos mais a frente)
+Desempenho (Disco rígido)
+   </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/03_file-system/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/03_file-system/</guid>
+      <description>Sistemas de arquivos (File system)
+O que são?
+ Conceito Controla como dados são gravados e lidos
+Abstrações: Nome de arquivos, diretórios
+Onde começa o meu dado? Onde termina? Como acessar?
+Metadados: Quando o arquivo foi criado, quando foi modificado por último. Quem é o dono do arquivo. Quem tem permissões sobre esse arquivo? &amp;hellip;
+ Visualizando binários de arquivos hexdump &amp;lt;opção&amp;gt; nome_do_arquivo Exemplo
+hexdump -C imagem.png Arquivos teste</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/mbr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/mbr/</guid>
+      <description> MBR Master Boot Record
+ Características 32 bits de endereçamento
+Partições: - Primárias - Estendida - Lógica
+ Limitações Partições com no máximo 2TB (32bits)
+Máximo de 4 partições primárias
+Máximo de 1 partição estendida
+Máximo de 128 partições lógicas (dentro de uma partição estendida)
+ Tabela de partição  BOOT POST Leitura do primeiro setor do disco com maior prioridade (configurado no SETUP) MBR
+ Leitura complementar
+ </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/gpt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/gpt/</guid>
+      <description> GPT  (GUID Partition Table )
+GUID -&amp;gt; Identificador único global
+ Características Primeiro setor -&amp;gt; MBR (retrocompatibilidade)
+64 bits de endereçamento
+Redundância (backup da tabela)
+Partições com no máximo zB 2^70
+Limite de partições primárias do sistema operacional (128)
+Flags
+Partições: Primária, Estendida, Lógica
+ Comparativo com MBR   Leitura complementar
+ </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/clusters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/clusters/</guid>
+      <description>Clusters (unidade de alocação)
+Unidade básica de alocação do espaço em disco para arquivos e diretórios
+Menor porção lógica de espaço em disco que pode ser alocada para armazenar um arquivo
+  Entendendo Tamanho lógico do arquivo != tamanho físico do arquivo
+(tamanho vs tamanho em disco)
+File slack = Tamanho físico - tamanho lógico
+(Conferir propriedades de um arquivo)
+ Fragmentação dos discos Arquivos gravados em sequências -&amp;gt; Princípio da localidade (estudaremos mais a fundo no final do curso)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/exemplos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/exemplos/</guid>
+      <description>Exemplos Casos de uso:
+ FAT NTFS EXT HFS   Fat32 File alocation table
+Sucessor do Fat12, Fat16
+File Allocation Table (Tabela de alocaçào de arquivos)
+1996
+Suporta partições até 2TB
+Tamanho de arquivos máximo: 4GB
+Nome dos arquivos: Passou de 8 para 256 caracteres
+Passou o limite de 3 caracteres para a extensão
+ Comparativo FAT    Atributo Fat 12 Fat 16 Fat 32     Max Cluster 4096 65536 268435456   Tamanho dos Cluster 512B até 4KB 2KB até 32KB 4KB até 32KB   Tamanho máximo do volume 16736256 (16MB) 2147123200B (2GB) 2TB    Endereço do cluster é o número do cluster no disco (simples)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/escolha/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/escolha/</guid>
+      <description>Qual sistema de arquivo escolher? Depende do sistema operacional que está sendo usado
+USB -&amp;gt; Fat 32 (Volumes menores do que 32GB, compatibilidade) ou exfat (arquivos maiores do que 4GB)
+HD,SSD externos para Windows -&amp;gt; NTFS
+HD,SSD externos multiplataforma -&amp;gt; exfat</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/formatacao/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/formatacao/</guid>
+      <description>Formatar O que é a operação de formatação?
+ Configurar um sistema de arquivo numa partição Colocar uma determinada partição sob determinado sistema de arquivo.
+Exemplo: Formatar partição única de um pendrive para o sistema de arquivo Fat32.
+ Consequências? Todos os arquivos são &amp;lsquo;perdidos&amp;rsquo;
+ É possível recuperar os dados de uma partição formatada? Sim, mas não é possível recuperar estrutura de diretórios.
+(Não é um procedimento garantido)</description>
+    </item>
+    
+  </channel>
+</rss>

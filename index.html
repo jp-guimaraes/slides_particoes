@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta name="generator" content="Hugo 0.68.3" />
+    <meta charset="utf-8">
+<title>Partições</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/slides_particoes/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/slides_particoes/reveal-js/css/reveal.css"><link rel="stylesheet" href="/slides_particoes/robot-lung.css" id="theme"><link rel="stylesheet" href="/slides_particoes/highlight-js/color-brewer.min.css">
+    
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="heading">🪓</h1>
+<h1 id="partições-e-sistemas-de-arquivos">Partições e Sistemas de Arquivos</h1>
+<p>🖥️ Organização e Manutenção de Computadores</p>
+<p><a href="https://jp-guimaraes.github.io/">🌐 João Paulo Guimarães</a></p>
+</section>
+
+  
+
+    <section>
+
+<section data-shortcode-section>
+<h1 id="objetivos">Objetivos</h1>
+<p>Entender o conceito de partições e sistemas de arquivos.</p>
+<p>Conhecer os sistemas de arquivos mais usados atualmente, suas vantagens e desvantagens.</p>
+</section><section>
+<h1 id="sumário">Sumário</h1>
+<ol>
+<li>O que são partições?</li>
+<li>O que são sistemas de arquivos?</li>
+<li>MBR,GPT</li>
+<li>Formatação</li>
+</ol>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="partições">Partições</h1>
+<p>O que são?</p>
+</section><section>
+<h1 id="conceito">Conceito</h1>
+<p>Divisões lógicas de um armazenamento secundário</p>
+<p>HDs, pendrives, ssd</p>
+<p><img src="https://img.ibxk.com.br/materias/artigo_particoes.jpg?w=328" alt=""></p>
+</section><section>
+<p><img src="https://lh3.googleusercontent.com/proxy/qNbgnxLYrkJczrJrEqR4QpMhS-OcnhtXQ9AXGaEDJ-S6MazgXZ3-JM7co4Psw1QWLHYMG5yLFR8NhOcHD74RL6UjNkEGLw1AWiDCBVgOoicJoH3rrxIeb3npCtHpqbxA0czuNmiH90gASxk0-a9DJhIiZp_M0gbABGQRFp-o9h4" alt=""></p>
+</section><section>
+<h1 id="sistemas-de-arquivo">Sistemas de arquivo</h1>
+<p>Sistemas operacionais diferentes usam sistemas de arquivos diferentes</p>
+<p>Cada partição pode ter um <strong>sistema de arquivo</strong> diferente</p>
+<p><img src="https://i0.wp.com/blog.bluesoft.com.br/wp-content/uploads/2015/04/enderecamento-logistico.jpg?resize=1200%2C600&amp;ssl=1" alt=""></p>
+</section><section>
+<h1 id="vantagens-em-usar-partições">Vantagens em usar partições?</h1>
+<p>Modularização de armazenamento</p>
+<p>Multiplos sistemas operacionais (veremos mais a frente)</p>
+<p>Desempenho (Disco rígido)</p>
+</section><section>
+<p><img src="http://s2.glbimg.com/S7xPF_dYcynfQ6eC87tEL3GgBBU=/695x0/s.glbimg.com/po/tt2/f/original/2014/10/09/captura-de-tela-2014-10-09-as-145229.png" alt=""></p>
+</section><section>
+<p><img src="https://s.profissionaisti.com.br/wp-content/uploads/2014/06/dualboot36.jpg" alt=""></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="sistemas-de-arquivos">Sistemas de arquivos</h1>
+<p>(File system)</p>
+<p>O que são?</p>
+</section><section>
+<h1 id="conceito">Conceito</h1>
+<p>Controla como dados são gravados e lidos</p>
+<p>Abstrações: Nome de arquivos, diretórios</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Wikipedia_favicon_hexdump.svg/290px-Wikipedia_favicon_hexdump.svg.png" alt=""></p>
+<p>Onde começa o meu dado? Onde termina? Como acessar?</p>
+<p>Metadados: Quando o arquivo foi criado, quando foi modificado por último. Quem é o dono do arquivo. Quem tem permissões sobre esse arquivo?  &hellip;</p>
+</section><section>
+<h1 id="visualizando-binários-de-arquivos">Visualizando binários de arquivos</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="nohighlight" data-noescape>hexdump &lt;opção&gt; nome_do_arquivo
+</code></pre></div><p>Exemplo</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="nohighlight" data-noescape>hexdump -C imagem.png
+</code></pre></div><p><a href="https://file-examples.com/">Arquivos teste</a></p>
+<p><a href="https://krazydad.com/fieldguidetofiles.php">Leitura complementar</a></p>
+</section><section>
+<p>Arquivos mais complexos</p>
+<p>Cabeçalhos nos arquivos para guardar <strong>metadados</strong></p>
+<p>Exemplo 1: Arquivo de música WAV</p>
+<p>Meta dados:
+Artist
+Album
+Track title
+Genre
+Album artwork
+Track number
++
+Número de canais, Sample rate, byterate, bits per sample, etc</p>
+<p>Exemplo 2: Imagem; Tamanho da imagem, color depth, etc</p>
+<p><a href="https://www.youtube.com/watch?v=KN8YgJnShPM&amp;t=31s">Vídeo complementar</a></p>
+</section><section>
+<h1 id="sistemas-de-arquivo">Sistemas de arquivo</h1>
+<p>Sistemas operacionais diferentes usam sistemas de arquivos diferentes</p>
+<p>Cada partição pode ter um <strong>sistema de arquivo</strong> diferente</p>
+</section><section>
+<h1 id="vantagens-em-usar-partições">Vantagens em usar partições?</h1>
+<p>Modularização de armazenamento</p>
+<p>Multiplos sistemas operacionais</p>
+</section><section>
+<h1 id="exemplos---windows">Exemplos - Windows</h1>
+<ul>
+<li>Windows 95
+Fat16</li>
+<li>Windows 98 e Windows Me
+Fat32</li>
+<li>Windows NT, Windows 2000, Windows XP, Windows Vista, Windows 7, Windows 8, Windows 10
+NTFS</li>
+</ul>
+</section><section>
+<h1 id="exemplos">Exemplos</h1>
+<p>Sistemas de arquivos mais utilizados atualmente</p>
+<ul>
+<li>Fat 32 - Flash drives</li>
+<li>NTFS - Sistemas Windows</li>
+<li>Ext2, Ext3, Ext4 - Linux</li>
+<li>HFS, HFS+, APFS (Apple)</li>
+<li>YAFFS (Yet another flash file system, Android)</li>
+</ul>
+<p>Entre outros!</p>
+</section><section>
+<h1 id="como-são-organizadas-as-partições">Como são organizadas as partições?</h1>
+<p>Duas possíveis soluções:</p>
+<ul>
+<li>
+<p>MBR</p>
+</li>
+<li>
+<p>GPT</p>
+</li>
+</ul>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="mbr">MBR</h1>
+<p>Master Boot Record</p>
+<p><img src="https://i1.wp.com/knowitlikepro.com/wp-content/uploads/2020/05/1-2.png?resize=473%2C541&amp;ssl=1" alt=""></p>
+</section><section>
+<h1 id="características">Características</h1>
+<p>32 bits de endereçamento</p>
+<p>Partições:
+- Primárias
+- Estendida
+- Lógica</p>
+</section><section>
+<h1 id="limitações">Limitações</h1>
+<p>Partições com no máximo 2TB (32bits)</p>
+<p>Máximo de 4 partições primárias</p>
+<p>Máximo de 1 partição estendida</p>
+<p>Máximo de 128 partições lógicas (dentro de uma partição estendida)</p>
+</section><section>
+<h1 id="tabela-de-partição">Tabela de partição</h1>
+<p><img src="https://i2.wp.com/knowitlikepro.com/wp-content/uploads/2020/05/Understanding-MBR.png?resize=1024%2C585&amp;ssl=1" alt=""></p>
+</section><section>
+<h1 id="boot">BOOT</h1>
+<p>POST
+Leitura do primeiro setor do disco com maior prioridade (configurado no SETUP)
+MBR</p>
+</section><section>
+<p><a href="https://knowitlikepro.com/understanding-master-boot-record-mbr/">Leitura complementar</a></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="gpt">GPT</h1>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/GUID_Partition_Table_Scheme.svg/800px-GUID_Partition_Table_Scheme.svg.png" alt="drawing" height="600"/>
+</section><section>
+<p>(GUID Partition Table )</p>
+<p>GUID -&gt; Identificador único global</p>
+</section><section>
+<h1 id="características">Características</h1>
+<p>Primeiro setor -&gt; MBR (retrocompatibilidade)</p>
+<p>64 bits de endereçamento</p>
+<p>Redundância (backup da tabela)</p>
+<p>Partições com no máximo zB 2^70</p>
+<p>Limite de partições primárias do sistema operacional (128)</p>
+<p>Flags</p>
+<p>Partições: Primária, Estendida, Lógica</p>
+</section><section>
+<h1 id="comparativo-com-mbr">Comparativo com MBR</h1>
+</section><section>
+<p><img src="https://www.meupositivo.com.br/doseujeito/wp-content/uploads/2019/06/diferenca-entre-mbr-e-gpt-1.jpg" alt=""></p>
+</section><section>
+<p><a href="https://knowitlikepro.com/understanding-master-boot-record-mbr/">Leitura complementar</a></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="clusters">Clusters</h1>
+<p>(unidade de alocação)</p>
+<p>Unidade básica de alocação do espaço em disco para arquivos e diretórios</p>
+<p>Menor porção lógica de espaço em disco que pode ser alocada para armazenar um arquivo</p>
+</section><section>
+<p><img src="https://agcurbanismo.com.br/2019/wp-content/uploads/2019/03/10-e1552670976216.jpg" alt=""></p>
+</section><section>
+<h1 id="entendendo">Entendendo</h1>
+<p>Tamanho lógico do arquivo != tamanho físico do arquivo</p>
+<p>(tamanho vs tamanho em disco)</p>
+<p>File slack = Tamanho físico - tamanho lógico</p>
+<p>(Conferir propriedades de um arquivo)</p>
+</section><section>
+<h1 id="fragmentação-dos-discos">Fragmentação dos discos</h1>
+<p>Arquivos gravados em sequências -&gt; Princípio da localidade (estudaremos mais a fundo no final do curso)</p>
+<p>Estratégia de colocar arquivos em blocos: Pequenas sobras para poder haver mudanças no arquivo sem precisar move-lo (slack space) ou sobescrever blocos</p>
+<p>Fragmentação (dependendo da natureza do armazenamento secundário é um problema ou não)</p>
+<p><a href="https://www.youtube.com/watch?v=kPv1gQ5Rs8A&amp;ab_channel=FifoF.">Defrag!</a></p>
+<p><a href="https://www.youtube.com/watch?v=KN8YgJnShPM&amp;t=31s">Vídeo recomendado</a></p>
+</section><section>
+<h1 id="quiz">Quiz</h1>
+<p>Analise as seguintes situações</p>
+<ul>
+<li>Situação 1: Clusters pequenos, arquivos pequenos (média)</li>
+<li>Situação 2: Clusters pequenos, arquivos grandes (média)</li>
+<li>Situação 3: Clusters grandes, arquivos pequenos (média)</li>
+<li>Situação 4: Clusters grandes, arquivos grandes (média)</li>
+</ul>
+</section><section>
+<h1 id="situação-1">Situação 1</h1>
+<p>Clusters pequenos
+Arquivos pequenos (média)</p>
+</section><section>
+<h1 id="situação-2">Situação 2</h1>
+<p>Clusters pequenos
+Arquivos pequenos (média)</p>
+</section><section>
+<h1 id="situação-3">Situação 3</h1>
+<p>Clusters pequenos
+Arquivos pequenos (média)</p>
+</section><section>
+<h1 id="situação-4">Situação 4</h1>
+<p>Clusters pequenos
+Arquivos pequenos (média)</p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="exemplos">Exemplos</h1>
+<p>Casos de uso:</p>
+<ul>
+<li>FAT</li>
+<li>NTFS</li>
+<li>EXT</li>
+<li>HFS</li>
+</ul>
+</section><section>
+<h1 id="fat32">Fat32</h1>
+<p>File alocation table</p>
+<p>Sucessor do Fat12, Fat16</p>
+<p>File Allocation Table (Tabela de alocaçào de arquivos)</p>
+<p>1996</p>
+<p>Suporta partições até 2TB</p>
+<p>Tamanho de arquivos máximo: <strong>4GB</strong></p>
+<p>Nome dos arquivos: Passou de 8 para 256 caracteres</p>
+<p>Passou o limite de 3 caracteres para a extensão</p>
+</section><section>
+<h1 id="comparativo-fat">Comparativo FAT</h1>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Fat 12</th>
+<th>Fat 16</th>
+<th>Fat 32</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Max Cluster</td>
+<td>4096</td>
+<td>65536</td>
+<td>268435456</td>
+</tr>
+<tr>
+<td>Tamanho dos Cluster</td>
+<td>512B até 4KB</td>
+<td>2KB até 32KB</td>
+<td>4KB até 32KB</td>
+</tr>
+<tr>
+<td>Tamanho máximo do volume</td>
+<td>16736256 (16MB)</td>
+<td>2147123200B (2GB)</td>
+<td>2TB</td>
+</tr>
+</tbody>
+</table>
+<p>Endereço do cluster é o número do cluster no disco (simples)</p>
+</section><section>
+<h1 id="comparação-com-o-fat16">Comparação com o FAT16</h1>
+<p><strong>melhorias</strong></p>
+<p>Tamanho do cluster mais flexível</p>
+<p>Mais confiável</p>
+<p>Tamanho de arquivos, partições, extensões</p>
+<p><strong>comprometimento</strong></p>
+<p><em>Mais lento do que o FAT16</em></p>
+</section><section>
+<h1 id="ntfs">NTFS</h1>
+<p>New technology file system</p>
+<p>Desenvolvido pela Microsoft - Windows NT</p>
+<p>Segurança
+- Ponto de vista de prevenção de danos (blackout) -&gt; Journaling -&gt; log de mudanças
+- Ponto de vista de acesso aos dados: Permissões e encriptação dos dados</p>
+<p>Tamanho dos arquivos</p>
+<p>Clusters
+- Tamanho padrão: 4KB
+- Clusters menores do que o FAT32 -&gt; Reduz o espaço desperdiçado</p>
+<p>Por padrão não é compatível com outros sistemas operacionais</p>
+</section><section>
+<h1 id="comparativo-ntfs-vs-fat32">Comparativo NTFS vs FAT32</h1>
+<p>NTFS &raquo; FAT32</p>
+<p>Arquivos maiores do que 4GB são possíveis (tamanho do arquivo limitado ao tamanho do volume)</p>
+<p>Nome de volumes até 32 caracteres</p>
+<p>Suporte a compactação, criptografia, indexação</p>
+<p>Suporte a clusters de 512 bytes</p>
+<p>Muito mais <em>seguro</em> do que FAT32
+- Mais fácil de recuperar de erros
+- Política de segurança e gerenciamento dos dados</p>
+<p>Menos vulneráveis a fragmentos</p>
+<p>Melhor desempenho, em geral</p>
+</section><section>
+<h1 id="comparativo-ntfs-vs-fat32-1">Comparativo NTFS vs FAT32</h1>
+<p>FAT32 &raquo; NTFS</p>
+<p>Mais fácil de danificar arquivos em mídias removíveis
+- Sistema de arquivo mais complexo
+- Difícil remoção rápida</p>
+<p>Drivers extra para plataformas não Windows</p>
+<p>Mais lento do que o FAT32
+- Diretivas de segurança
+- Complexidade</p>
+</section><section>
+<h1 id="exfat">exFat</h1>
+<p>Extended file allocation table</p>
+<p>(2006)</p>
+<p>Menos sofisticado do que NTFS</p>
+<p>Rápido</p>
+<p>Otimizado para dispositivos removíveis (flash-drives, cartões de memória)</p>
+<p>Limite alto do tamanho de arquivos</p>
+<p>Suporte em diversas plataformas</p>
+</section><section>
+<h1 id="ext3">EXT3</h1>
+<p>Distribuições Linux</p>
+<p>Evolução do ext, EXT2 (1993)</p>
+<p>Ano de lançamento: 2001</p>
+<p>Implementação do journaling
+- Registro (log) das transações
+- Provê recuperação mais fácil do sistema em caso de desligamento não programado</p>
+</section><section>
+<h1 id="ext4">EXT4</h1>
+<p>(2008)</p>
+<p>Sistema de arquivo padrão para distribuições linux de desktop e servidores atuais</p>
+<p>Arquivos de até 16TB</p>
+<p>Volumes de 1EB</p>
+<p>Não possui suporte padrão no MAC, Windows</p>
+</section><section>
+<h1 id="hfshfsapfs">HFS,HFS+,APFS</h1>
+<p>Hierarchical file system for macOS (2Gb,2TB)</p>
+<p>1998 -&gt; HSF+ (+journaling, 8EB)</p>
+<p>2017 -&gt; Apple file System APFS
+Otimizado para SSDs</p>
+<p>Não tem suporte fora das plataforrmas da apple</p>
+</section><section>
+<h1 id="zfs">ZFS</h1>
+<p>Zed file system</p>
+<p>Integra gerenciador de volumes ao sistema de arquivos -&gt; Foco na proteção dos dados</p>
+</section><section>
+<h1 id="leitura-complementar">Leitura complementar</h1>
+<p><a href="http://en.wikipedia.org/wiki/Comparison_of_file_systems">Comparativo dos sistemas de arquivos</a></p>
+</section><section>
+<h1 id="partições-vistas-do-so">Partições vistas do SO</h1>
+<p><strong>linux</strong></p>
+<p>Partições estendidas -&gt; numeradas de 5 a 16</p>
+<p>Podem pontos de montagens diferentes</p>
+<p>Exemplo: /, /dev/, /usr</p>
+<p><strong>windows</strong></p>
+<p>Partição estendida mascarada -&gt; não há diferenciação</p>
+<p>Todas as partições recebem letras de endereçamento</p>
+</section><section>
+<h1 id="leitura-complementar-1">Leitura Complementar</h1>
+<p><a href="http://brunotorres.net/particionamento-disco">particionamento de discos</a></p>
+
+</section>
+</section>
+    <section><h1 id="qual-sistema-de-arquivo-escolher">Qual sistema de arquivo escolher?</h1>
+<p>Depende do sistema operacional que está sendo usado</p>
+<p>USB -&gt; Fat 32 (Volumes menores do que 32GB, compatibilidade) ou exfat (arquivos maiores do que 4GB)</p>
+<p>HD,SSD externos para Windows -&gt; NTFS</p>
+<p>HD,SSD externos multiplataforma -&gt; exfat</p>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="formatar">Formatar</h1>
+<p>O que é a operação de formatação?</p>
+</section><section>
+<h1 id="configurar-um-sistema-de-arquivo-numa-partição">Configurar um sistema de arquivo numa partição</h1>
+<p>Colocar uma determinada partição sob determinado sistema de arquivo.</p>
+<p>Exemplo: Formatar partição única de um pendrive para o sistema de arquivo Fat32.</p>
+</section><section>
+<h1 id="consequências">Consequências?</h1>
+<p>Todos os arquivos são &lsquo;perdidos&rsquo;</p>
+</section><section>
+<h1 id="é-possível-recuperar-os-dados-de-uma-partição-formatada">É possível recuperar os dados de uma partição formatada?</h1>
+<p>Sim, mas não é possível recuperar estrutura de diretórios.</p>
+<p>(Não é um procedimento garantido)</p>
+<p>(Veremos nas próximas aulas!)</p>
+<p>Backup dos dados é sempre necessário</p>
+
+</section>
+</section>
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/slides_particoes/reveal-hugo/object-assign.js></script>
+
+<a href="/slides_particoes/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">null</script>
+<script type="application/json" id="reveal-hugo-page-params">{"custom_theme":"robot-lung.css","highlight_theme":"color-brewer","margin":0.2,"transition":"slide","transition_speed":"fast"}</script>
+
+<script src="/slides_particoes/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/slides_particoes/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/slides_particoes/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/slides_particoes/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/slides_particoes/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/slides_particoes/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+    
+    
+  </body>
+</html>
