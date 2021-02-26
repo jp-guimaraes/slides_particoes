@@ -204,8 +204,6 @@ MBR</p>
 <h1 id="comparativo-com-mbr">Comparativo com MBR</h1>
 </section><section>
 <p><img src="https://www.meupositivo.com.br/doseujeito/wp-content/uploads/2019/06/diferenca-entre-mbr-e-gpt-1.jpg" alt=""></p>
-</section><section>
-<p><a href="https://knowitlikepro.com/understanding-master-boot-record-mbr/">Leitura complementar</a></p>
 
 </section>
 </section>
@@ -235,10 +233,10 @@ MBR</p>
 <h1 id="quiz">Quiz</h1>
 <p>Analise as seguintes situações (file slack)</p>
 <ul>
-<li>Situação 1: Clusters pequenos, arquivos pequenos (média)</li>
-<li>Situação 2: Clusters pequenos, arquivos grandes (média)</li>
-<li>Situação 3: Clusters grandes, arquivos pequenos (média)</li>
-<li>Situação 4: Clusters grandes, arquivos grandes (média)</li>
+<li>Situação 1: Clusters pequenos, arquivos pequenos (em média)</li>
+<li>Situação 2: Clusters pequenos, arquivos grandes (em média)</li>
+<li>Situação 3: Clusters grandes, arquivos pequenos (em média)</li>
+<li>Situação 4: Clusters grandes, arquivos grandes (em média)</li>
 </ul>
 </section><section>
 <h1 id="situação-1">Situação 1</h1>
@@ -394,25 +392,14 @@ Otimizado para SSDs</p>
 <h1 id="leitura-complementar">Leitura complementar</h1>
 <p><a href="http://en.wikipedia.org/wiki/Comparison_of_file_systems">Comparativo dos sistemas de arquivos</a></p>
 </section><section>
-<h1 id="partições-vistas-do-so">Partições vistas do SO</h1>
-<p><strong>linux</strong></p>
-<p>Partições estendidas -&gt; numeradas de 5 a 16</p>
-<p>Podem pontos de montagens diferentes</p>
-<p>Exemplo: /, /dev/, /usr</p>
-<p><strong>windows</strong></p>
-<p>Partição estendida mascarada -&gt; não há diferenciação</p>
-<p>Todas as partições recebem letras de endereçamento</p>
-</section><section>
-<h1 id="leitura-complementar-1">Leitura Complementar</h1>
-<p><a href="http://brunotorres.net/particionamento-disco">particionamento de discos</a></p>
-
-</section>
-</section>
-    <section><h1 id="qual-sistema-de-arquivo-escolher">Qual sistema de arquivo escolher?</h1>
-<p>Depende do sistema operacional que está sendo usado</p>
+<h1 id="resumo">Resumo</h1>
+<p>#$ Qual sistema de arquivo escolher?</p>
+<p>Depende do sistema operacional que está sendo usado e aplicação</p>
 <p>USB -&gt; Fat 32 (Volumes menores do que 32GB, compatibilidade) ou exfat (arquivos maiores do que 4GB)</p>
 <p>HD,SSD externos para Windows -&gt; NTFS</p>
 <p>HD,SSD externos multiplataforma -&gt; exfat</p>
+
+</section>
 </section>
     <section>
 
@@ -432,6 +419,30 @@ Otimizado para SSDs</p>
 <p>(Não é um procedimento garantido)</p>
 <p>(Veremos nas próximas aulas!)</p>
 <p>Backup dos dados é sempre necessário</p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="ferramentas-do-sistema-operacional">Ferramentas do Sistema Operacional</h1>
+<p>Gestão de Discos e Partições</p>
+<p>Linux</p>
+<p>Windows</p>
+</section><section>
+<p><strong>linux</strong></p>
+<p>Arquivos no /dev/</p>
+<p>Partições estendidas -&gt; numeradas de 5 a 16</p>
+<p>Podem pontos de montagens diferentes</p>
+<p>Exemplo: /, /dev/, /usr</p>
+</section><section>
+<p><strong>windows</strong></p>
+<p>Partição estendida mascarada -&gt; não há diferenciação</p>
+<p>Todas as partições recebem letras de endereçamento</p>
+</section><section>
+<h1 id="ferramentas-de-gestão-de-disco-e-partições">Ferramentas de gestão de disco e partições</h1>
+<p>Windows: Gerenciamento de disco</p>
+<p>Ubuntu: Gparted, Disk (gnome-disks)</p>
 
 </section>
 </section>

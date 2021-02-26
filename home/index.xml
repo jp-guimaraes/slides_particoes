@@ -87,8 +87,7 @@ Partições com no máximo zB 2^70
 Limite de partições primárias do sistema operacional (128)
 Flags
 Partições: Primária, Estendida, Lógica
- Comparativo com MBR   Leitura complementar
- </description>
+ Comparativo com MBR   </description>
     </item>
     
     <item>
@@ -127,18 +126,6 @@ Passou o limite de 3 caracteres para a extensão
     
     <item>
       <title></title>
-      <link>https://jp-guimaraes.github.io/slides_particoes/home/escolha/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jp-guimaraes.github.io/slides_particoes/home/escolha/</guid>
-      <description>Qual sistema de arquivo escolher? Depende do sistema operacional que está sendo usado
-USB -&amp;gt; Fat 32 (Volumes menores do que 32GB, compatibilidade) ou exfat (arquivos maiores do que 4GB)
-HD,SSD externos para Windows -&amp;gt; NTFS
-HD,SSD externos multiplataforma -&amp;gt; exfat</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>https://jp-guimaraes.github.io/slides_particoes/home/formatacao/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -149,6 +136,28 @@ Exemplo: Formatar partição única de um pendrive para o sistema de arquivo Fat
  Consequências? Todos os arquivos são &amp;lsquo;perdidos&amp;rsquo;
  É possível recuperar os dados de uma partição formatada? Sim, mas não é possível recuperar estrutura de diretórios.
 (Não é um procedimento garantido)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/so/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/so/</guid>
+      <description> Ferramentas do Sistema Operacional Gestão de Discos e Partições
+Linux
+Windows
+ linux
+Arquivos no /dev/
+Partições estendidas -&amp;gt; numeradas de 5 a 16
+Podem pontos de montagens diferentes
+Exemplo: /, /dev/, /usr
+ windows
+Partição estendida mascarada -&amp;gt; não há diferenciação
+Todas as partições recebem letras de endereçamento
+ Ferramentas de gestão de disco e partições Windows: Gerenciamento de disco
+Ubuntu: Gparted, Disk (gnome-disks)
+ </description>
     </item>
     
   </channel>
