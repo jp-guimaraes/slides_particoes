@@ -4,161 +4,78 @@
     <title>Homes on Fontes</title>
     <link>https://jp-guimaraes.github.io/slides_particoes/home/</link>
     <description>Recent content in Homes on Fontes</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    
-	<atom:link href="https://jp-guimaraes.github.io/slides_particoes/home/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://jp-guimaraes.github.io/slides_particoes/home/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://jp-guimaraes.github.io/slides_particoes/home/01_intro/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://jp-guimaraes.github.io/slides_particoes/home/01_intro/</guid>
-      <description> Objetivos Entender o conceito de partições e sistemas de arquivos.
-Conhecer os sistemas de arquivos mais usados atualmente, suas vantagens e desvantagens.
- Sumário  O que são partições? O que são sistemas de arquivos? MBR,GPT Formatação   </description>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;objetivos&#34;&gt;Objetivos&lt;/h1&gt;&#xA;&lt;p&gt;Entender o conceito de partições e sistemas de arquivos.&lt;/p&gt;&#xA;&lt;p&gt;Conhecer os sistemas de arquivos mais usados atualmente, suas vantagens e desvantagens.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;sumário&#34;&gt;Sumário&lt;/h1&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Básico do básico sobre sistemas Operacionais&lt;/li&gt;&#xA;&lt;li&gt;O que são partições?&lt;/li&gt;&#xA;&lt;li&gt;O que são sistemas de arquivos?&lt;/li&gt;&#xA;&lt;li&gt;MBR,GPT&lt;/li&gt;&#xA;&lt;li&gt;Formatação&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&#xA;&lt;/section&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jp-guimaraes.github.io/slides_particoes/home/02_particoes/</link>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/02_00_sos/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jp-guimaraes.github.io/slides_particoes/home/02_particoes/</guid>
-      <description> Partições O que são?
- Conceito Divisões lógicas de um armazenamento secundário
-HDs, pendrives, ssd
-  Sistemas de arquivo Sistemas operacionais diferentes usam sistemas de arquivos diferentes
-Cada partição pode ter um sistema de arquivo diferente
- Vantagens em usar partições? Modularização de armazenamento
-Multiplos sistemas operacionais (veremos mais a frente)
-Desempenho (Disco rígido)
-   </description>
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/02_00_sos/</guid>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;sistemas-operacionais&#34;&gt;Sistemas Operacionais&lt;/h1&gt;&#xA;&lt;p&gt;O que são?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Relembrando&amp;hellip;&lt;/p&gt;&#xA;&lt;p&gt;Sistema Computacional?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;sistema-computacional&#34;&gt;Sistema Computacional&lt;/h1&gt;&#xA;&lt;p&gt;Hardware&lt;/p&gt;&#xA;&lt;p&gt;Software&lt;/p&gt;&#xA;&lt;p&gt;Pessoas&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;so&#34;&gt;SO&lt;/h1&gt;&#xA;&lt;p&gt;Software&lt;/p&gt;&#xA;&lt;p&gt;Interface entre Hardware e os demais softwares e os usuários&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://www.alura.com.br/artigos/assets/sistemas-operacionais-conceito-estrutura/imagem3.png&#34; width=&#34;500px&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;quais-os-sistemas-operacionais-atuais&#34;&gt;quais os sistemas operacionais atuais?&lt;/h1&gt;&#xA;&lt;p&gt;Requisitos &amp;amp; aplicações&lt;/p&gt;&#xA;&lt;p&gt;Interfaces de uso&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://gs.statcounter.com/os-market-share#monthly-200901-202009&#34;&gt;Estatísticas&lt;/a&gt;&lt;/p&gt;&#xA;&#xA;&lt;/section&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jp-guimaraes.github.io/slides_particoes/home/03_file-system/</link>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/02_01_clusters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jp-guimaraes.github.io/slides_particoes/home/03_file-system/</guid>
-      <description>Sistemas de arquivos (File system)
-O que são?
- Conceito Controla como dados são gravados e lidos
-Abstrações: Nome de arquivos, diretórios
-Onde começa o meu dado? Onde termina? Como acessar?
-Metadados: Quando o arquivo foi criado, quando foi modificado por último. Quem é o dono do arquivo. Quem tem permissões sobre esse arquivo? &amp;hellip;
- Visualizando binários de arquivos hexdump &amp;lt;opção&amp;gt; nome_do_arquivo Exemplo
-hexdump -C imagem.png Arquivos teste</description>
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/02_01_clusters/</guid>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;como-o-sistema-operacional-trabalha-com-o-armazendamento-secundário&#34;&gt;Como o Sistema operacional trabalha com o armazendamento secundário?&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;clusters&#34;&gt;Clusters&lt;/h1&gt;&#xA;&lt;p&gt;(unidade de alocação)&lt;/p&gt;&#xA;&lt;p&gt;Unidade básica de alocação do espaço em disco para arquivos e diretórios&lt;/p&gt;&#xA;&lt;p&gt;Menor porção lógica de espaço em disco que pode ser alocada para armazenar um arquivo&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.fgvtn.com.br/upload/produto/1896_0.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;entendendo&#34;&gt;Entendendo&lt;/h1&gt;&#xA;&lt;p&gt;Tamanho lógico do arquivo != tamanho físico do arquivo&lt;/p&gt;&#xA;&lt;p&gt;(tamanho vs tamanho em disco)&lt;/p&gt;&#xA;&lt;p&gt;File slack = Tamanho físico - tamanho lógico&lt;/p&gt;&#xA;&lt;p&gt;(Conferir propriedades de um arquivo)&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jp-guimaraes.github.io/slides_particoes/home/mbr/</link>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/02_02_particoes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jp-guimaraes.github.io/slides_particoes/home/mbr/</guid>
-      <description> MBR Master Boot Record
- Características 32 bits de endereçamento
-Partições: - Primárias - Estendida - Lógica
- Limitações Partições com no máximo 2TB (32bits)
-Máximo de 4 partições primárias
-Máximo de 1 partição estendida
-Máximo de 128 partições lógicas (dentro de uma partição estendida)
- Tabela de partição  BOOT POST Leitura do primeiro setor do disco com maior prioridade (configurado no SETUP) MBR
- Leitura complementar
- </description>
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/02_02_particoes/</guid>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;partições&#34;&gt;Partições&lt;/h1&gt;&#xA;&lt;p&gt;O que são?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;conceito&#34;&gt;Conceito&lt;/h1&gt;&#xA;&lt;p&gt;Divisões lógicas de um armazenamento secundário&lt;/p&gt;&#xA;&lt;p&gt;HDs, pendrives, ssd&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.iagro.ms.gov.br/wp-content/uploads/2015/11/fronteira2-600x372.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;vantagens-em-usar-partições&#34;&gt;Vantagens em usar partições?&lt;/h1&gt;&#xA;&lt;p&gt;Modularização de armazenamento&lt;/p&gt;&#xA;&lt;p&gt;Multiplos sistemas operacionais (veremos mais a frente)&lt;/p&gt;&#xA;&lt;p&gt;Desempenho (Disco rígido)&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://s2.glbimg.com/S7xPF_dYcynfQ6eC87tEL3GgBBU=/695x0/s.glbimg.com/po/tt2/f/original/2014/10/09/captura-de-tela-2014-10-09-as-145229.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&#xA;&lt;/section&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jp-guimaraes.github.io/slides_particoes/home/gpt/</link>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/03_00_file-system/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jp-guimaraes.github.io/slides_particoes/home/gpt/</guid>
-      <description> GPT  (GUID Partition Table )
-GUID -&amp;gt; Identificador único global
- Características Primeiro setor -&amp;gt; MBR (retrocompatibilidade)
-64 bits de endereçamento
-Redundância (backup da tabela)
-Partições com no máximo zB 2^70
-Limite de partições primárias do sistema operacional (128)
-Flags
-Partições: Primária, Estendida, Lógica
- Comparativo com MBR   </description>
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/03_00_file-system/</guid>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;sistemas-de-arquivos&#34;&gt;Sistemas de arquivos&lt;/h1&gt;&#xA;&lt;p&gt;(File system)&lt;/p&gt;&#xA;&lt;p&gt;O que são?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;conceito&#34;&gt;Conceito&lt;/h1&gt;&#xA;&lt;p&gt;Controla como dados são gravados e lidos&lt;/p&gt;&#xA;&lt;p&gt;Abstrações: Nome de arquivos, diretórios&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Wikipedia_favicon_hexdump.svg/290px-Wikipedia_favicon_hexdump.svg.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Onde começa o meu dado? Onde termina? Como acessar?&lt;/p&gt;&#xA;&lt;p&gt;Metadados: Quando o arquivo foi criado, quando foi modificado por último. Quem é o dono do arquivo. Quem tem permissões sobre esse arquivo?  &amp;hellip;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;visualizando-binários-de-arquivos&#34;&gt;Visualizando binários de arquivos&lt;/h1&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hexdump &amp;lt;opção&amp;gt; nome_do_arquivo&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Exemplo&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hexdump -C imagem.png&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://file-examples.com/&#34;&gt;Arquivos teste&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://krazydad.com/fieldguidetofiles.php&#34;&gt;Leitura complementar&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jp-guimaraes.github.io/slides_particoes/home/clusters/</link>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/03_01_mbr/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jp-guimaraes.github.io/slides_particoes/home/clusters/</guid>
-      <description>Clusters (unidade de alocação)
-Unidade básica de alocação do espaço em disco para arquivos e diretórios
-Menor porção lógica de espaço em disco que pode ser alocada para armazenar um arquivo
-  Entendendo Tamanho lógico do arquivo != tamanho físico do arquivo
-(tamanho vs tamanho em disco)
-File slack = Tamanho físico - tamanho lógico
-(Conferir propriedades de um arquivo)
- Fragmentação dos discos Arquivos gravados em sequências -&amp;gt; Princípio da localidade (estudaremos mais a fundo no final do curso)</description>
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/03_01_mbr/</guid>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;mbr&#34;&gt;MBR&lt;/h1&gt;&#xA;&lt;p&gt;Master Boot Record&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://i1.wp.com/knowitlikepro.com/wp-content/uploads/2020/05/1-2.png?resize=473%2C541&amp;amp;ssl=1&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;características&#34;&gt;Características&lt;/h1&gt;&#xA;&lt;p&gt;32 bits de endereçamento&lt;/p&gt;&#xA;&lt;p&gt;Partições:&#xA;- Primárias&#xA;- Estendida&#xA;- Lógica&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;limitações&#34;&gt;Limitações&lt;/h1&gt;&#xA;&lt;p&gt;Partições com no máximo 2TB (32bits)&lt;/p&gt;&#xA;&lt;p&gt;Máximo de 4 partições primárias&lt;/p&gt;&#xA;&lt;p&gt;Máximo de 1 partição estendida&lt;/p&gt;&#xA;&lt;p&gt;Máximo de 128 partições lógicas (dentro de uma partição estendida)&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;tabela-de-partição&#34;&gt;Tabela de partição&lt;/h1&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://i2.wp.com/knowitlikepro.com/wp-content/uploads/2020/05/Understanding-MBR.png?resize=1024%2C585&amp;amp;ssl=1&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;boot&#34;&gt;BOOT&lt;/h1&gt;&#xA;&lt;p&gt;POST&#xA;Leitura do primeiro setor do disco com maior prioridade (configurado no SETUP)&#xA;MBR&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://knowitlikepro.com/understanding-master-boot-record-mbr/&#34;&gt;Leitura complementar&lt;/a&gt;&lt;/p&gt;&#xA;&#xA;&lt;/section&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jp-guimaraes.github.io/slides_particoes/home/exemplos/</link>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/03_02_gpt/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jp-guimaraes.github.io/slides_particoes/home/exemplos/</guid>
-      <description>Exemplos Casos de uso:
- FAT NTFS EXT HFS   Fat32 File alocation table
-Sucessor do Fat12, Fat16
-File Allocation Table (Tabela de alocaçào de arquivos)
-1996
-Suporta partições até 2TB
-Tamanho de arquivos máximo: 4GB
-Nome dos arquivos: Passou de 8 para 256 caracteres
-Passou o limite de 3 caracteres para a extensão
- Comparativo FAT    Atributo Fat 12 Fat 16 Fat 32     Max Cluster 4096 65536 268435456   Tamanho dos Cluster 512B até 4KB 2KB até 32KB 4KB até 32KB   Tamanho máximo do volume 16736256 (16MB) 2147123200B (2GB) 2TB    Endereço do cluster é o número do cluster no disco (simples)</description>
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/03_02_gpt/</guid>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;gpt&#34;&gt;GPT&lt;/h1&gt;&#xA;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/GUID_Partition_Table_Scheme.svg/800px-GUID_Partition_Table_Scheme.svg.png&#34; alt=&#34;drawing&#34; height=&#34;600&#34;/&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;(GUID Partition Table )&lt;/p&gt;&#xA;&lt;p&gt;GUID -&amp;gt; Identificador único global&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;características&#34;&gt;Características&lt;/h1&gt;&#xA;&lt;p&gt;Primeiro setor -&amp;gt; MBR (retrocompatibilidade)&lt;/p&gt;&#xA;&lt;p&gt;64 bits de endereçamento&lt;/p&gt;&#xA;&lt;p&gt;Redundância (backup da tabela)&lt;/p&gt;&#xA;&lt;p&gt;Partições com no máximo zB 2^70&lt;/p&gt;&#xA;&lt;p&gt;Limite de partições primárias do sistema operacional (128)&lt;/p&gt;&#xA;&lt;p&gt;Flags&lt;/p&gt;&#xA;&lt;p&gt;Partições: Primária, Estendida, Lógica&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;comparativo-com-mbr&#34;&gt;Comparativo com MBR&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.meupositivo.com.br/doseujeito/wp-content/uploads/2019/06/diferenca-entre-mbr-e-gpt-1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&#xA;&lt;/section&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jp-guimaraes.github.io/slides_particoes/home/formatacao/</link>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/04_formatacao/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jp-guimaraes.github.io/slides_particoes/home/formatacao/</guid>
-      <description>Formatar O que é a operação de formatação?
- Configurar um sistema de arquivo numa partição Colocar uma determinada partição sob determinado sistema de arquivo.
-Exemplo: Formatar partição única de um pendrive para o sistema de arquivo Fat32.
- Consequências? Todos os arquivos são &amp;lsquo;perdidos&amp;rsquo;
- É possível recuperar os dados de uma partição formatada? Sim, mas não é possível recuperar estrutura de diretórios.
-(Não é um procedimento garantido)</description>
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/04_formatacao/</guid>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;formatar&#34;&gt;Formatar&lt;/h1&gt;&#xA;&lt;p&gt;O que é a operação de formatação?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;configurar-um-sistema-de-arquivo-numa-partição&#34;&gt;Configurar um sistema de arquivo numa partição&lt;/h1&gt;&#xA;&lt;p&gt;Colocar uma determinada partição sob determinado sistema de arquivo.&lt;/p&gt;&#xA;&lt;p&gt;Exemplo: Formatar partição única de um pendrive para o sistema de arquivo Fat32.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;consequências&#34;&gt;Consequências?&lt;/h1&gt;&#xA;&lt;p&gt;Todos os arquivos são &amp;lsquo;perdidos&amp;rsquo;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;é-possível-recuperar-os-dados-de-uma-partição-formatada&#34;&gt;É possível recuperar os dados de uma partição formatada?&lt;/h1&gt;&#xA;&lt;p&gt;Sim, mas não é possível recuperar estrutura de diretórios.&lt;/p&gt;&#xA;&lt;p&gt;(Não é um procedimento garantido)&lt;/p&gt;&#xA;&lt;p&gt;(Veremos no próximo curso!)&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jp-guimaraes.github.io/slides_particoes/home/so/</link>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/09_exemplos/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jp-guimaraes.github.io/slides_particoes/home/so/</guid>
-      <description> Ferramentas do Sistema Operacional Gestão de Discos e Partições
-Linux
-Windows
- linux
-Arquivos no /dev/
-Partições estendidas -&amp;gt; numeradas de 5 a 16
-Podem pontos de montagens diferentes
-Exemplo: /, /dev/, /usr
- windows
-Partição estendida mascarada -&amp;gt; não há diferenciação
-Todas as partições recebem letras de endereçamento
- Ferramentas de gestão de disco e partições Windows: Gerenciamento de disco
-Ubuntu: Gparted, Disk (gnome-disks)
- </description>
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/09_exemplos/</guid>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;exemplos&#34;&gt;Exemplos&lt;/h1&gt;&#xA;&lt;p&gt;Casos de uso:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;FAT&lt;/li&gt;&#xA;&lt;li&gt;NTFS&lt;/li&gt;&#xA;&lt;li&gt;EXT&lt;/li&gt;&#xA;&lt;li&gt;HFS&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;fat32&#34;&gt;Fat32&lt;/h1&gt;&#xA;&lt;p&gt;File alocation table&lt;/p&gt;&#xA;&lt;p&gt;Sucessor do Fat12, Fat16&lt;/p&gt;&#xA;&lt;p&gt;File Allocation Table (Tabela de alocaçào de arquivos)&lt;/p&gt;&#xA;&lt;p&gt;1996&lt;/p&gt;&#xA;&lt;p&gt;Suporta partições até 2TB&lt;/p&gt;&#xA;&lt;p&gt;Tamanho de arquivos máximo: &lt;strong&gt;4GB&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Nome dos arquivos: Passou de 8 para 256 caracteres&lt;/p&gt;&#xA;&lt;p&gt;Passou o limite de 3 caracteres para a extensão&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;comparativo-fat&#34;&gt;Comparativo FAT&lt;/h1&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Atributo&lt;/th&gt;&#xA;          &lt;th&gt;Fat 12&lt;/th&gt;&#xA;          &lt;th&gt;Fat 16&lt;/th&gt;&#xA;          &lt;th&gt;Fat 32&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Max Cluster&lt;/td&gt;&#xA;          &lt;td&gt;4096&lt;/td&gt;&#xA;          &lt;td&gt;65536&lt;/td&gt;&#xA;          &lt;td&gt;268435456&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Tamanho dos Cluster&lt;/td&gt;&#xA;          &lt;td&gt;512B até 4KB&lt;/td&gt;&#xA;          &lt;td&gt;2KB até 32KB&lt;/td&gt;&#xA;          &lt;td&gt;4KB até 32KB&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Tamanho máximo do volume&lt;/td&gt;&#xA;          &lt;td&gt;16736256 (16MB)&lt;/td&gt;&#xA;          &lt;td&gt;2147123200B (2GB)&lt;/td&gt;&#xA;          &lt;td&gt;2TB&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;Endereço do cluster é o número do cluster no disco (simples)&lt;/p&gt;</description>
     </item>
-    
+    <item>
+      <title></title>
+      <link>https://jp-guimaraes.github.io/slides_particoes/home/09_so/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jp-guimaraes.github.io/slides_particoes/home/09_so/</guid>
+      <description>&lt;section data-shortcode-section&gt;&#xA;&lt;h1 id=&#34;ferramentas-do-sistema-operacional&#34;&gt;Ferramentas do Sistema Operacional&lt;/h1&gt;&#xA;&lt;p&gt;Gestão de Discos e Partições&lt;/p&gt;&#xA;&lt;p&gt;Linux&lt;/p&gt;&#xA;&lt;p&gt;Windows&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;strong&gt;linux&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Arquivos no /dev/&lt;/p&gt;&#xA;&lt;p&gt;Partições estendidas -&amp;gt; numeradas de 5 a 16&lt;/p&gt;&#xA;&lt;p&gt;Podem pontos de montagens diferentes&lt;/p&gt;&#xA;&lt;p&gt;Exemplo: /, /dev/, /usr&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;strong&gt;windows&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Partição estendida mascarada -&amp;gt; não há diferenciação&lt;/p&gt;&#xA;&lt;p&gt;Todas as partições recebem letras de endereçamento&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;ferramentas-de-gestão-de-disco-e-partições&#34;&gt;Ferramentas de gestão de disco e partições&lt;/h1&gt;&#xA;&lt;p&gt;Windows: Gerenciamento de disco&lt;/p&gt;&#xA;&lt;p&gt;Ubuntu: Gparted, Disk (gnome-disks)&lt;/p&gt;&#xA;&#xA;&lt;/section&gt;</description>
+    </item>
   </channel>
 </rss>

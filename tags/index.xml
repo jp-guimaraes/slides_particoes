@@ -4,11 +4,8 @@
     <title>Tags on Fontes</title>
     <link>https://jp-guimaraes.github.io/slides_particoes/tags/</link>
     <description>Recent content in Tags on Fontes</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    
-	<atom:link href="https://jp-guimaraes.github.io/slides_particoes/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://jp-guimaraes.github.io/slides_particoes/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
