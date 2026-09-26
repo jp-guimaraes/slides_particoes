@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.147.7">
+	<meta name="generator" content="Hugo 0.160.1">
     <meta charset="utf-8">
 <title>Partições</title>
 
@@ -83,7 +83,7 @@
 <p>Unidade básica de alocação do espaço em disco para arquivos e diretórios</p>
 <p>Menor porção lógica de espaço em disco que pode ser alocada para armazenar um arquivo</p>
 </section><section>
-<p><img src="https://www.fgvtn.com.br/upload/produto/1896_0.jpg" alt=""></p>
+<p><img src="/images/clusters-disco.jpg" alt=""></p>
 </section><section>
 <h1 id="entendendo">Entendendo</h1>
 <p>Tamanho lógico do arquivo != tamanho físico do arquivo</p>
@@ -134,14 +134,14 @@ Arquivos grandes (média)</p>
 <h1 id="conceito">Conceito</h1>
 <p>Divisões lógicas de um armazenamento secundário</p>
 <p>HDs, pendrives, ssd</p>
-<p><img src="https://www.iagro.ms.gov.br/wp-content/uploads/2015/11/fronteira2-600x372.jpg" alt=""></p>
+<p><img src="/images/fronteira-particoes.jpg" alt=""></p>
 </section><section>
 <h1 id="vantagens-em-usar-partições">Vantagens em usar partições?</h1>
 <p>Modularização de armazenamento</p>
 <p>Multiplos sistemas operacionais (veremos mais a frente)</p>
 <p>Desempenho (Disco rígido)</p>
 </section><section>
-<p><img src="http://s2.glbimg.com/S7xPF_dYcynfQ6eC87tEL3GgBBU=/695x0/s.glbimg.com/po/tt2/f/original/2014/10/09/captura-de-tela-2014-10-09-as-145229.png" alt=""></p>
+<p><img src="/images/particoes-captura-tela.png" alt=""></p>
 
 </section>
 </section>
@@ -155,15 +155,15 @@ Arquivos grandes (média)</p>
 <h1 id="conceito">Conceito</h1>
 <p>Controla como dados são gravados e lidos</p>
 <p>Abstrações: Nome de arquivos, diretórios</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Wikipedia_favicon_hexdump.svg/290px-Wikipedia_favicon_hexdump.svg.png" alt=""></p>
+<p><img src="/images/hexdump-favicon.svg" alt=""></p>
 <p>Onde começa o meu dado? Onde termina? Como acessar?</p>
 <p>Metadados: Quando o arquivo foi criado, quando foi modificado por último. Quem é o dono do arquivo. Quem tem permissões sobre esse arquivo?  &hellip;</p>
 </section><section>
 <h1 id="visualizando-binários-de-arquivos">Visualizando binários de arquivos</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>hexdump &lt;opção&gt; nome_do_arquivo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>hexdump &lt;opção&gt; nome_do_arquivo
 </span></span></code></pre></div><p>Exemplo</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>hexdump -C imagem.png
-</span></span></code></pre></div><p><a href="https://file-examples.com/">Arquivos teste</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>hexdump -C imagem.png
+</span></span></code></pre></div><p><a href="https://www.samplefiles.com/">Arquivos teste</a></p>
 <p><a href="https://krazydad.com/fieldguidetofiles.php">Leitura complementar</a></p>
 </section><section>
 <p>Arquivos mais complexos</p>
@@ -184,7 +184,7 @@ Número de canais, Sample rate, byterate, bits per sample, etc</p>
 <h1 id="sistemas-de-arquivo">Sistemas de arquivo</h1>
 <p>Sistemas operacionais diferentes usam sistemas de arquivos diferentes</p>
 <p>Cada partição pode ter um <strong>sistema de arquivo</strong> diferente</p>
-<p><img src="https://i0.wp.com/blog.bluesoft.com.br/wp-content/uploads/2015/04/enderecamento-logistico.jpg?resize=1200%2C600&amp;ssl=1" alt=""></p>
+<p><img src="/images/enderecamento-logistico.jpg" alt=""></p>
 </section><section>
 <h1 id="exemplos---windows">Exemplos - Windows</h1>
 <ul>
@@ -222,7 +222,8 @@ NTFS</li>
 <p>Multiplos sistemas operacionais -&gt; Múltiplos sistemas de arquivo</p>
 <p>Como conseguir?</p>
 <p>Múltiplas partições!</p>
-<p><img src="https://miro.medium.com/1*eGrTgM1ek43yH_qA67-NwA.jpeg" alt=""></p>
+</section><section>
+<p><img src="/images/multiplos-sistemas-arquivo.jpeg" alt=""></p>
 
 </section>
 </section>
@@ -231,7 +232,7 @@ NTFS</li>
 <section data-shortcode-section>
 <h1 id="mbr">MBR</h1>
 <p>Master Boot Record</p>
-<p><img src="https://i1.wp.com/knowitlikepro.com/wp-content/uploads/2020/05/1-2.png?resize=473%2C541&amp;ssl=1" alt=""></p>
+<p><img src="/images/mbr-diagrama-1.jpg" alt=""></p>
 </section><section>
 <h1 id="características">Características</h1>
 <p>32 bits de endereçamento</p>
@@ -247,7 +248,7 @@ NTFS</li>
 <p>Máximo de 128 partições lógicas (dentro de uma partição estendida)</p>
 </section><section>
 <h1 id="tabela-de-partição">Tabela de partição</h1>
-<p><img src="https://i2.wp.com/knowitlikepro.com/wp-content/uploads/2020/05/Understanding-MBR.png?resize=1024%2C585&amp;ssl=1" alt=""></p>
+<p><img src="/images/mbr-diagrama-2.jpg" alt=""></p>
 </section><section>
 <h1 id="boot">BOOT</h1>
 <p>POST
@@ -262,7 +263,7 @@ MBR</p>
 
 <section data-shortcode-section>
 <h1 id="gpt">GPT</h1>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/GUID_Partition_Table_Scheme.svg/800px-GUID_Partition_Table_Scheme.svg.png" alt="drawing" height="600"/>
+<img src="/images/gpt-scheme.svg" alt="drawing" height="600"/>
 </section><section>
 <p>(GUID Partition Table )</p>
 <p>GUID -&gt; Identificador único global</p>
@@ -278,7 +279,138 @@ MBR</p>
 </section><section>
 <h1 id="comparativo-com-mbr">Comparativo com MBR</h1>
 </section><section>
-<p><img src="https://www.meupositivo.com.br/doseujeito/wp-content/uploads/2019/06/diferenca-entre-mbr-e-gpt-1.jpg" alt=""></p>
+<p><img src="/images/diferenca-mbr-gpt.jpg" alt=""></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="uefi">UEFI</h1>
+<p>Unified Extensible Firmware Interface</p>
+<p>Sucessor da BIOS</p>
+<p><img src="/images/uefi-logo.svg" alt=""></p>
+</section><section>
+<h1 id="boot-biosmbr">BOOT (BIOS/MBR)</h1>
+<p>Relembrando&hellip;</p>
+<p>POST → lê o 1º setor do disco de maior prioridade → executa o código do MBR</p>
+<p>O bootloader (GRUB) fica <strong>gravado nos primeiros setores do disco</strong></p>
+</section><section>
+<h1 id="boot-uefi">BOOT (UEFI)</h1>
+<p>POST → firmware lê a <strong>ESP</strong> (EFI System Partition, FAT32) → executa um arquivo <code>.efi</code></p>
+<p>Não existe &ldquo;código gravado no setor de boot&rdquo; — só <strong>arquivos normais</strong> dentro de uma partição</p>
+</section><section>
+<h1 id="nvram">NVRAM</h1>
+<p><em>Non-Volatile Random Access Memory</em></p>
+<p>Chip separado dos discos, na própria placa-mãe</p>
+<p>Guarda as <strong>entradas de boot</strong> (<code>Boot0000</code>, <code>Boot0001</code>, &hellip;) e o <code>BootOrder</code></p>
+<p>Cada entrada é um ponteiro: &ldquo;carregue tal arquivo <code>.efi</code>, de tal partição&rdquo;</p>
+</section><section>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>efibootmgr -v
+</span></span></code></pre></div><pre tabindex="0"><code>BootOrder: 0000,0001
+
+Boot0000* Ubuntu
+    HD(3,GPT,5ba3c495-...)  \EFI\ubuntu\shimx64.efi
+
+Boot0001* Windows Boot Manager
+    HD(1,GPT,525a162c-...)  \EFI\Microsoft\Boot\bootmgfw.efi
+</code></pre><p>Cada entrada aponta pelo <strong>PARTUUID da partição</strong> — não pela posição física do disco</p>
+</section><section>
+<h1 id="comparativo">Comparativo</h1>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>BIOS/MBR</th>
+          <th>UEFI</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Onde mora o bootloader</td>
+          <td>Setor de boot (código bruto)</td>
+          <td>Arquivo <code>.efi</code> numa partição FAT (ESP)</td>
+      </tr>
+      <tr>
+          <td>Preferência de boot</td>
+          <td>CMOS/flash, &ldquo;tente o HD antes do CD&rdquo; (grosseira)</td>
+          <td>NVRAM, entradas nomeadas por arquivo</td>
+      </tr>
+      <tr>
+          <td>Editar de dentro do SO</td>
+          <td>Sem padrão</td>
+          <td><code>efibootmgr</code> (Linux), <code>bcdedit</code> (Windows)</td>
+      </tr>
+  </tbody>
+</table>
+</section><section>
+<h1 id="por-que-isso-importa">Por que isso importa</h1>
+<p>BIOS/MBR: um único código de boot por disco — trocar de disco, troca o boot junto</p>
+<p>UEFI: entradas <strong>independentes</strong> na NVRAM, cada uma na sua própria ESP — vários discos, vários sistemas, sem &ldquo;pisar no pé&rdquo; um do outro</p>
+<p>(base para a próxima seção: <strong>dual boot</strong>)</p>
+</section><section>
+<p><a href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface">Leitura complementar</a></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="dual-boot">Dual boot</h1>
+<p>Mais de um sistema operacional instalado — tela de escolha no boot</p>
+<p><em>Multi boot</em>, se forem mais de dois</p>
+</section><section>
+<h1 id="dois-cenários-bem-diferentes">Dois cenários bem diferentes</h1>
+<p><strong>Mesmo disco</strong> — cenário clássico (Windows + Linux, GRUB): a <strong>ordem de instalação importa</strong>, Windows sempre primeiro</p>
+<p><strong>Discos separados</strong> — cada SO no seu próprio NVMe/SSD: cada disco tem sua própria ESP e sua própria entrada na NVRAM</p>
+</section><section>
+<h1 id="estudo-de-caso-2-nvme-windows--ubuntu">Estudo de caso: 2 NVMe, Windows + Ubuntu</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Disco</th>
+          <th>Conteúdo</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>nvme0n1</code></td>
+          <td>Windows completo: ESP, MSR, <code>C:</code>, recuperação</td>
+      </tr>
+      <tr>
+          <td><code>nvme1n1</code></td>
+          <td>Ubuntu completo: swap, root (ext4), ESP própria</td>
+      </tr>
+  </tbody>
+</table>
+<p>Nenhum arquivo de boot de um sistema está gravado no disco do outro</p>
+</section><section>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>efibootmgr -v
+</span></span></code></pre></div><pre tabindex="0"><code>BootOrder: 0000,0001
+
+Boot0000* Ubuntu                -&gt; nvme1n1p3 (ESP do Ubuntu)
+Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
+</code></pre><p>Duas entradas independentes, cada uma no seu disco — nada em comum</p>
+</section><section>
+<h1 id="por-que-isso-é-seguro-e-reversível">Por que isso é seguro (e reversível)</h1>
+<p>Trocar o <code>nvme1n1</code> (disco do Ubuntu) por outro <strong>não toca em nada do Windows</strong></p>
+<p>Recolocar o disco original restaura o Ubuntu, sem reinstalar nada</p>
+<p>Isolamento total — consequência direta de como o UEFI trata boot (seção anterior)</p>
+</section><section>
+<h1 id="pegadinha-entrada-pode-sumir-da-nvram">Pegadinha: entrada pode sumir da NVRAM</h1>
+<p>Algumas firmwares &ldquo;limpam&rdquo; entradas órfãs (apontando pra um disco desconectado) durante o POST</p>
+<p><strong>Workaround</strong> — recriar manualmente, com o disco já reconectado:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>sudo efibootmgr --create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --disk /dev/nvme1n1 --part <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --label <span style="color:#e6db74">&#34;Ubuntu&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --loader <span style="color:#e6db74">&#39;\EFI\ubuntu\shimx64.efi&#39;</span>
+</span></span></code></pre></div><p>Só recria o ponteiro na NVRAM — nenhum arquivo no disco é alterado</p>
+</section><section>
+<h1 id="resumo">Resumo</h1>
+<p>Múltiplos SOs, discos separados → múltiplas ESPs, múltiplas entradas na NVRAM</p>
+<p>Identifique discos sempre por <strong>modelo/serial</strong>, nunca pelo nome <code>nvmeXn1</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>lsblk -d -o NAME,SIZE,MODEL,SERIAL
+</span></span></code></pre></div><p>O nome do device depende da ordem de enumeração PCIe — pode mudar entre boots</p>
 
 </section>
 </section>
@@ -468,6 +600,50 @@ Otimizado para SSDs</p>
 <h1 id="ferramentas-de-gestão-de-disco-e-partições">Ferramentas de gestão de disco e partições</h1>
 <p>Windows: Gerenciamento de disco</p>
 <p>Ubuntu: Gparted, Disk (gnome-disks)</p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="referências">Referências</h1>
+<p>Créditos das imagens usadas nesta apresentação</p>
+</section><section>
+<h3 id="sistemas-operacionais--clusters">Sistemas operacionais / clusters</h3>
+<ul>
+<li><a href="https://www.fgvtn.com.br/upload/produto/1896_0.jpg">fgvtn.com.br</a></li>
+</ul>
+<h3 id="partições">Partições</h3>
+<ul>
+<li><a href="https://www.iagro.ms.gov.br/wp-content/uploads/2015/11/fronteira2-600x372.jpg">iagro.ms.gov.br</a></li>
+<li><a href="http://s2.glbimg.com/S7xPF_dYcynfQ6eC87tEL3GgBBU=/695x0/s.glbimg.com/po/tt2/f/original/2014/10/09/captura-de-tela-2014-10-09-as-145229.png">g1.globo.com</a></li>
+</ul>
+</section><section>
+<h3 id="sistemas-de-arquivos">Sistemas de arquivos</h3>
+<ul>
+<li><a href="https://commons.wikimedia.org/wiki/File:Wikipedia_favicon_hexdump.svg">Wikimedia Commons — Wikipedia favicon hexdump</a></li>
+<li><a href="https://blog.bluesoft.com.br/wp-content/uploads/2015/04/enderecamento-logistico.jpg">blog.bluesoft.com.br</a></li>
+<li><a href="https://miro.medium.com/1*eGrTgM1ek43yH_qA67-NwA.jpeg">Medium</a></li>
+</ul>
+</section><section>
+<h3 id="mbr">MBR</h3>
+<ul>
+<li><a href="https://knowitlikepro.com/wp-content/uploads/2020/05/1-2.png">knowitlikepro.com</a></li>
+<li><a href="https://knowitlikepro.com/wp-content/uploads/2020/05/Understanding-MBR.png">knowitlikepro.com</a></li>
+<li><a href="https://knowitlikepro.com/understanding-master-boot-record-mbr/">knowitlikepro.com — Understanding Master Boot Record (MBR)</a></li>
+</ul>
+</section><section>
+<h3 id="gpt">GPT</h3>
+<ul>
+<li><a href="https://commons.wikimedia.org/wiki/File:GUID_Partition_Table_Scheme.svg">Wikimedia Commons — GUID Partition Table Scheme</a></li>
+<li><a href="https://www.meupositivo.com.br/doseujeito/wp-content/uploads/2019/06/diferenca-entre-mbr-e-gpt-1.jpg">meupositivo.com.br</a></li>
+</ul>
+</section><section>
+<h3 id="uefi">UEFI</h3>
+<ul>
+<li><a href="https://commons.wikimedia.org/wiki/File:Uefi_logo.svg">Wikimedia Commons — UEFI logo</a></li>
+<li><a href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface">ArchWiki — Unified Extensible Firmware Interface</a></li>
+</ul>
 
 </section>
 </section>
