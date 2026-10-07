@@ -58,7 +58,11 @@
 <p>Software</p>
 <p>Interface entre Hardware e os demais softwares e os usuários</p>
 </section><section>
-<figure><img src="images/sistemas-operacionais-camadas.png" width="500px">
+<figure><img src="images/camadas-sistema-operacional.png" width="800px">
+</figure>
+</section><section>
+<h1 id="camadas-e-plataformas">Camadas e plataformas</h1>
+<figure><img src="images/pilha-plataformas.png" width="560px">
 </figure>
 </section><section>
 <h1 id="quais-os-sistemas-operacionais-atuais">quais os sistemas operacionais atuais?</h1>
@@ -225,6 +229,11 @@ NTFS</li>
     <section>
 
 <section data-shortcode-section>
+<h1 id="tabela-de-partição">Tabela de partição</h1>
+<p>O &ldquo;sumário&rdquo; do disco: onde começa e termina cada partição</p>
+<p><img src="images/disco-particoes-tabela.png" alt=""></p>
+<p>Fica no próprio disco — não na placa-mãe, na RAM ou no SO</p>
+</section><section>
 <h1 id="mbr">MBR</h1>
 <p>Master Boot Record</p>
 <p><img src="images/mbr-diagrama-1.jpg" alt=""></p>
@@ -238,19 +247,26 @@ NTFS</li>
 </section><section>
 <h1 id="limitações">Limitações</h1>
 <p>Partições com no máximo 2TB (32bits)</p>
-<p>Máximo de 4 partições primárias</p>
+<p>Máximo de 4 partições primárias (a tabela tem só 4 entradas)</p>
 <p>Máximo de 1 partição estendida</p>
-<p>Máximo de 128 partições lógicas (dentro de uma partição estendida)</p>
+<p>Partições lógicas: sem limite fixo (todas dentro da estendida)</p>
 </section><section>
-<h1 id="tabela-de-partição">Tabela de partição</h1>
+<h1 id="tabela-de-partição-1">Tabela de partição</h1>
 <p><img src="images/mbr-diagrama-2.jpg" alt=""></p>
+</section><section>
+<h1 id="layout-do-disco-mbr">Layout do disco (MBR)</h1>
+<img src="images/mbr-layout.png" alt="Layout de um disco MBR" height="600"/>
 </section><section>
 <h1 id="boot">BOOT</h1>
 <p>POST
 Leitura do primeiro setor do disco com maior prioridade (configurado no SETUP)
 MBR</p>
 </section><section>
-<p><a href="https://knowitlikepro.com/understanding-master-boot-record-mbr/">Leitura complementar</a></p>
+<p>Leitura complementar</p>
+<ul>
+<li><a href="https://jp-guimaraes.github.io/livro-organizacao-e-manutencao-de-computadores/livro/06_sistema_operacional_sistemas_de_arquivo/">Livro da disciplina — Cap. 6, §6.5 (em português)</a></li>
+<li><a href="https://knowitlikepro.com/understanding-master-boot-record-mbr/">Understanding Master Boot Record (em inglês)</a></li>
+</ul>
 
 </section>
 </section>
@@ -627,6 +643,8 @@ Otimizado para SSDs</p>
 <li><a href="https://knowitlikepro.com/wp-content/uploads/2020/05/1-2.png">knowitlikepro.com</a></li>
 <li><a href="https://knowitlikepro.com/wp-content/uploads/2020/05/Understanding-MBR.png">knowitlikepro.com</a></li>
 <li><a href="https://knowitlikepro.com/understanding-master-boot-record-mbr/">knowitlikepro.com — Understanding Master Boot Record (MBR)</a></li>
+<li>Figuras &ldquo;Tabela de partição&rdquo; e &ldquo;Layout do disco (MBR)&rdquo;: redesenhos próprios (quadro da aula de 06/10/2026 e diagrama de knowitlikepro.com)</li>
+<li><a href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc783440(v=ws.10)">Microsoft — Basic disks and volumes</a> (partições lógicas sem limite fixo)</li>
 </ul>
 </section><section>
 <h3 id="gpt">GPT</h3>
