@@ -191,7 +191,7 @@ Número de canais, Sample rate, byterate, bits per sample, etc</p>
 Fat16</li>
 <li>Windows 98 e Windows Me
 Fat32</li>
-<li>Windows NT, Windows 2000, Windows XP, Windows Vista, Windows 7, Windows 8, Windows 10
+<li>Windows NT, Windows 2000, Windows XP, Windows Vista, Windows 7, Windows 8, Windows 10, Windows 11
 NTFS</li>
 </ul>
 </section><section>
@@ -205,6 +205,12 @@ NTFS</li>
 <li>YAFFS (Yet another flash file system, Android)</li>
 </ul>
 <p>Entre outros!</p>
+</section><section>
+<h1 id="não-confundir">Não confundir</h1>
+<p><strong>Tabela de partições</strong> (MBR, GPT): quais partições o disco tem</p>
+<p><strong>Sistema de arquivo</strong> (NTFS, FAT32, ext4…): como cada partição grava e lê os dados</p>
+<p>Um disco → uma tabela de partições</p>
+<p>Cada partição → seu próprio sistema de arquivo</p>
 </section><section>
 <h1 id="como-são-organizadas-as-partições">Como são organizadas as partições?</h1>
 <p>Duas possíveis soluções:</p>
@@ -375,6 +381,13 @@ Boot0001* Windows Boot Manager
 <p><strong>Mesmo disco</strong> — cenário clássico (Windows + Linux, GRUB): a <strong>ordem de instalação importa</strong>, Windows sempre primeiro</p>
 <p><strong>Discos separados</strong> — cada SO no seu próprio NVMe/SSD: cada disco tem sua própria ESP e sua própria entrada na NVRAM</p>
 </section><section>
+<h1 id="um-so-lê-o-sistema-de-arquivo-do-outro">Um SO lê o sistema de arquivo do outro?</h1>
+<p>Windows não lê ext4 de fábrica → software de interface (Linux Reader, <code>wsl --mount</code>)</p>
+<p>Linux lê e grava NTFS (ntfs3)</p>
+<p><strong>Ler/escrever ≠ rodar sobre</strong>: cada SO continua na sua partição</p>
+</section><section>
+<p><img src="images/dual-boot-interface.png" alt=""></p>
+</section><section>
 <h1 id="estudo-de-caso-2-nvme-windows--ubuntu">Estudo de caso: 2 NVMe, Windows + Ubuntu</h1>
 <table>
   <thead>
@@ -464,9 +477,19 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <p>File Allocation Table (Tabela de alocaçào de arquivos)</p>
 <p>1996</p>
 <p>Suporta partições até 2TB</p>
-<p>Tamanho de arquivos máximo: <strong>4GB</strong></p>
-<p>Nome dos arquivos: Passou de 8 para 256 caracteres</p>
-<p>Passou o limite de 3 caracteres para a extensão</p>
+<p>Tamanho de arquivos máximo: <strong>4GB</strong> — campo de 32 bits (2^32 bytes)</p>
+<p>Limite do sistema de arquivo, não do espaço livre</p>
+<p>Nomes longos: até 255 caracteres (desde o Windows 95)</p>
+<p>O antigo &ldquo;8.3&rdquo; (8 + 3 de extensão) era do FAT original, do MS-DOS</p>
+</section><section>
+<h1 id="experimento">Experimento</h1>
+<p>Pendrive de <strong>32 GB</strong>, vazio, em FAT32</p>
+<p>ISO do Windows 10: <strong>4,8 GB</strong></p>
+<p>Cabe ou não cabe?</p>
+<p>→ <em>&ldquo;muito grande para o formato do volume&rdquo;</em></p>
+</section><section>
+<h1 id="o-armário-com-prateleiras">O armário com prateleiras</h1>
+<p><img src="images/armario-limite-fat32.png" alt=""></p>
 </section><section>
 <h1 id="comparativo-fat">Comparativo FAT</h1>
 <table>
@@ -480,25 +503,26 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
   </thead>
   <tbody>
       <tr>
-          <td>Max Cluster</td>
-          <td>4096</td>
-          <td>65536</td>
-          <td>268435456</td>
+          <td>Máx. de clusters</td>
+          <td>≈ 4 mil (2^12)</td>
+          <td>≈ 65 mil (2^16)</td>
+          <td>≈ 268 milhões (2^28)</td>
       </tr>
       <tr>
-          <td>Tamanho dos Cluster</td>
+          <td>Tamanho do cluster</td>
           <td>512B até 4KB</td>
           <td>2KB até 32KB</td>
-          <td>4KB até 32KB</td>
+          <td>512B até 32KB</td>
       </tr>
       <tr>
           <td>Tamanho máximo do volume</td>
-          <td>16736256 (16MB)</td>
-          <td>2147123200B (2GB)</td>
-          <td>2TB</td>
+          <td>16 a 32 MB</td>
+          <td>2 GB</td>
+          <td>2 TB</td>
       </tr>
   </tbody>
 </table>
+<p>Valores típicos</p>
 <p>Endereço do cluster é o número do cluster no disco (simples)</p>
 </section><section>
 <h1 id="comparação-com-o-fat16">Comparação com o FAT16</h1>
@@ -507,7 +531,7 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <p>Mais confiável</p>
 <p>Tamanho de arquivos, partições, extensões</p>
 <p><strong>comprometimento</strong></p>
-<p><em>Mais lento do que o FAT16</em></p>
+<p><em>Tende a ser mais lento do que o FAT16</em></p>
 </section><section>
 <h1 id="ntfs">NTFS</h1>
 <p>New technology file system</p>
@@ -519,7 +543,7 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <p>Clusters
 - Tamanho padrão: 4KB
 - Clusters menores do que o FAT32 -&gt; Reduz o espaço desperdiçado</p>
-<p>Por padrão não é compatível com outros sistemas operacionais</p>
+<p>Fora do Windows: macOS só <strong>lê</strong>; Linux lê e grava (driver ntfs3, kernel 5.15+)</p>
 </section><section>
 <h1 id="comparativo-ntfs-vs-fat32">Comparativo NTFS vs FAT32</h1>
 <p>NTFS &raquo; FAT32</p>
@@ -531,15 +555,14 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 - Mais fácil de recuperar de erros
 - Política de segurança e gerenciamento dos dados</p>
 <p>Menos vulneráveis a fragmentos</p>
-<p>Melhor desempenho, em geral</p>
 </section><section>
-<h1 id="comparativo-ntfs-vs-fat32-1">Comparativo NTFS vs FAT32</h1>
+<h1 id="comparativo-ntfs-vs-fat32--onde-o-fat32-leva-vantagem">Comparativo NTFS vs FAT32 — onde o FAT32 leva vantagem</h1>
 <p>FAT32 &raquo; NTFS</p>
 <p>Mais fácil de danificar arquivos em mídias removíveis
 - Sistema de arquivo mais complexo
 - Difícil remoção rápida</p>
-<p>Drivers extra para plataformas não Windows</p>
-<p>Mais lento do que o FAT32
+<p>Fora do Windows: suporte parcial (macOS só lê)</p>
+<p>NTFS tende a ser mais lento
 - Diretivas de segurança
 - Complexidade</p>
 </section><section>
