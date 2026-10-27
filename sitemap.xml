@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jp-guimaraes.github.io/slides_particoes/home/01_intro/</loc>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/01_00_intro/</loc>
   </url><url>
     <loc>https://jp-guimaraes.github.io/slides_particoes/home/02_00_sos/</loc>
   </url><url>
@@ -12,21 +12,41 @@
   </url><url>
     <loc>https://jp-guimaraes.github.io/slides_particoes/home/03_00_file-system/</loc>
   </url><url>
-    <loc>https://jp-guimaraes.github.io/slides_particoes/home/03_01_mbr/</loc>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/03_01_formatacao/</loc>
   </url><url>
-    <loc>https://jp-guimaraes.github.io/slides_particoes/home/03_02_gpt/</loc>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/04_00_mbr/</loc>
   </url><url>
-    <loc>https://jp-guimaraes.github.io/slides_particoes/home/03_03_boot_uefi/</loc>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/04_01_gpt/</loc>
   </url><url>
-    <loc>https://jp-guimaraes.github.io/slides_particoes/home/03_04_dualboot/</loc>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/05_00_inicializacao/</loc>
   </url><url>
-    <loc>https://jp-guimaraes.github.io/slides_particoes/home/04_formatacao/</loc>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/05_01_post/</loc>
   </url><url>
-    <loc>https://jp-guimaraes.github.io/slides_particoes/home/09_exemplos/</loc>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/05_02_setup/</loc>
   </url><url>
-    <loc>https://jp-guimaraes.github.io/slides_particoes/home/09_so/</loc>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/06_00_uefi/</loc>
   </url><url>
-    <loc>https://jp-guimaraes.github.io/slides_particoes/home/10_referencias/</loc>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/06_01_upgrades/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/07_00_instalacao_windows/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/08_00_exemplos_fs/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/09_00_linux_ferramentas/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/09_01_instalacao_linux/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/10_00_dualboot/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/11_00_inicializacao_hardware/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/11_01_post_hardware/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/11_02_bios/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/11_03_clear_cmos/</loc>
+  </url><url>
+    <loc>https://jp-guimaraes.github.io/slides_particoes/home/12_00_referencias/</loc>
   </url><url>
     <loc>https://jp-guimaraes.github.io/slides_particoes/categories/</loc>
   </url><url>

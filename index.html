@@ -20,7 +20,7 @@
   
 
     <section><h1 id="heading">🪓</h1>
-<h1 id="partições-e-sistemas-de-arquivos">Partições e Sistemas de Arquivos</h1>
+<h1 id="partições-boot-e-instalação-de-so">Partições, boot e instalação de SO</h1>
 <p>🖥️ Organização e Montagem de Computadores</p>
 <p><a href="https://jp-guimaraes.github.io/">🌐 João Paulo Guimarães</a></p>
 </section>
@@ -31,16 +31,23 @@
 
 <section data-shortcode-section>
 <h1 id="objetivos">Objetivos</h1>
-<p>Entender o conceito de partições e sistemas de arquivos.</p>
-<p>Conhecer os sistemas de arquivos mais usados atualmente, suas vantagens e desvantagens.</p>
+<p>Entender partições e sistemas de arquivos — vantagens e limites de cada um</p>
+<p>Entender a sequência de inicialização do computador: POST, BIOS/UEFI, Setup</p>
+<p>Relacionar firmware e tabela de partição (BIOS + MBR × UEFI + GPT)</p>
+<p>Instalar Windows e Linux — e preparar o dual boot</p>
 </section><section>
 <h1 id="sumário">Sumário</h1>
 <ol>
-<li>Básico do básico sobre sistemas Operacionais</li>
-<li>O que são partições?</li>
-<li>O que são sistemas de arquivos?</li>
-<li>MBR,GPT</li>
-<li>Formatação</li>
+<li>Sistemas operacionais e armazenamento</li>
+<li>Partições, sistemas de arquivos e formatação</li>
+<li>Tabelas de partição: MBR e GPT</li>
+<li>A partida do computador: POST e Setup</li>
+<li>UEFI e os dois upgrades</li>
+<li>Instalação do Windows</li>
+<li>Sistemas de arquivos na prática</li>
+<li>Linux: ferramentas e instalação</li>
+<li>Dual boot</li>
+<li>Inicialização: o lado do hardware (energia, POST, BIOS, CMOS)</li>
 </ol>
 
 </section>
@@ -240,6 +247,27 @@ NTFS</li>
     <section>
 
 <section data-shortcode-section>
+<h1 id="formatar">Formatar</h1>
+<p>O que é a operação de formatação?</p>
+</section><section>
+<h1 id="configurar-um-sistema-de-arquivo-numa-partição">Configurar um sistema de arquivo numa partição</h1>
+<p>Colocar uma determinada partição sob determinado sistema de arquivo.</p>
+<p>Exemplo: Formatar partição única de um pendrive para o sistema de arquivo Fat32.</p>
+</section><section>
+<h1 id="consequências">Consequências?</h1>
+<p>Todos os arquivos são &lsquo;perdidos&rsquo;</p>
+</section><section>
+<h1 id="é-possível-recuperar-os-dados-de-uma-partição-formatada">É possível recuperar os dados de uma partição formatada?</h1>
+<p>Sim, mas não é possível recuperar estrutura de diretórios.</p>
+<p>(Não é um procedimento garantido)</p>
+<p>(Veremos no próximo curso!)</p>
+<p>Backup dos dados é sempre necessário</p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
 <h1 id="tabela-de-partição">Tabela de partição</h1>
 <p>O &ldquo;sumário&rdquo; do disco: onde começa e termina cada partição</p>
 <p><img src="images/disco-particoes-tabela.png" alt=""></p>
@@ -287,17 +315,17 @@ MBR</p>
 <h1 id="gpt">GPT</h1>
 <img src="images/gpt-scheme.svg" alt="drawing" height="600"/>
 </section><section>
-<p>(GUID Partition Table )</p>
-<p>GUID -&gt; Identificador único global</p>
+<p>(GUID Partition Table)</p>
+<p>GUID -&gt; Identificador único global — um por disco e um por partição</p>
 </section><section>
 <h1 id="características">Características</h1>
-<p>Primeiro setor -&gt; MBR (retrocompatibilidade)</p>
-<p>64 bits de endereçamento</p>
-<p>Redundância (backup da tabela)</p>
-<p>Partições com no máximo zB 2^70</p>
-<p>Limite de partições primárias do sistema operacional (128)</p>
+<p>Primeiro setor -&gt; &ldquo;MBR protetora&rdquo; (retrocompatibilidade)</p>
+<p>64 bits de endereçamento (MBR: 32)</p>
+<p>Redundância: <strong>cópia de segurança</strong> da tabela no fim do disco</p>
+<p>Partições de até 8 ZiB (2^64 setores de 512 B)</p>
+<p>Até 128 partições — todas primárias</p>
+<p><strong>Sem partição estendida nem lógica</strong></p>
 <p>Flags</p>
-<p>Partições: Primária, Estendida, Lógica</p>
 </section><section>
 <h1 id="comparativo-com-mbr">Comparativo com MBR</h1>
 </section><section>
@@ -308,10 +336,133 @@ MBR</p>
     <section>
 
 <section data-shortcode-section>
+<h1 id="a-partida-do-computador">A partida do computador</h1>
+<p>Do botão ao sistema operacional — o essencial para instalar um SO</p>
+<p>(o lado do hardware fica para o fim do deck)</p>
+</section><section>
+<h1 id="sequência-de-inicialização">Sequência de inicialização</h1>
+<ol>
+<li>Comando de ligar (placa-mãe chama o <strong>BIOS</strong>)</li>
+<li><strong>POST</strong>: autoteste do hardware</li>
+<li>POST assume o processador</li>
+<li>POST passa o controle para um programa <strong>definido no Setup</strong> (&ldquo;aonde?&rdquo; → qual disco)</li>
+<li>Sistema operacional copiado do disco para a <strong>RAM</strong></li>
+</ol>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="post">POST</h1>
+<p><strong>P</strong>ower-<strong>o</strong>n <strong>s</strong>elf-<strong>t</strong>est</p>
+<p>Auto teste de inicialização</p>
+</section><section>
+<h1 id="post-1">POST</h1>
+<p>Rotina realizada por software/firmware na placa-mãe</p>
+<p>Sequência de  testes de hardware realizada pela <strong>BIOS</strong></p>
+<p><em>Sistema está operacional?</em></p>
+<p>Informação visual e sonora de resposta</p>
+</section><section>
+<h1 id="post-o-exame-de-sangue">POST: o &ldquo;exame de sangue&rdquo;</h1>
+<p>Feito toda vez que o computador liga</p>
+<p>Passa <strong>só</strong> quem tem todos os componentes fundamentais funcionando (um &ldquo;E&rdquo; lógico)</p>
+<p>Sem RAM, sem processador ou placa-mãe danificada: o POST não passa e o computador não liga</p>
+</section><section>
+<h1 id="após-testes">Após testes</h1>
+<p>Passar controle da CPU para próximo programa</p>
+<p>Qual? Um <strong>endereço</strong>: é o <strong>disco</strong> (e a partição) definido no <strong>Setup</strong></p>
+<p>Disco sem sistema → &ldquo;insira um disco de inicialização&rdquo;</p>
+</section><section>
+<h1 id="ordem-de-boot">Ordem de boot</h1>
+<p>(Boot priority)</p>
+<p>Variável armazenada na CMOS (memória volátil, mantida pela bateria)</p>
+<p>Configurada pelo <strong>Setup</strong></p>
+<p>HD/SSD (sistema operacional instalado)</p>
+<p>Trocar o disco de boot no Setup (ex.: pendrive) → permite <strong>instalar</strong> um SO</p>
+<p>Controle da CPU dado ao sistema operacional (exemplo)</p>
+</section><section>
+<p><img src="images/boot-legado-bios.png" alt=""></p>
+</section><section>
+<p><img src="images/os-not-found.png" alt=""></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="setup">Setup</h1>
+<p>Programa de <strong>configuração e visualização</strong> da placa-mãe</p>
+<p>Analogia: a engrenagem <strong>Ajustes</strong> do celular</p>
+<p><img src="images/award-bios-setup.png" alt=""></p>
+</section><section>
+<h1 id="entrar-no-setup">Entrar no SETUP</h1>
+<p>Post ou manual da placa especifica qual tecla pressionar</p>
+<p>Mais utilizadas: del, f2, f8, f10, f12</p>
+</section><section>
+<h1 id="o-que-mora-no-setup">O que mora no Setup</h1>
+<ul>
+<li>Ligar/desligar funções da placa (ex.: Wi-Fi embutido)</li>
+<li>Data e hora</li>
+<li><strong>Qual disco</strong> dar a partida (ordem de boot)</li>
+<li>Frequência do processador, incluindo <strong>overclock</strong></li>
+<li>Frequência da memória RAM</li>
+<li>Consumo de energia</li>
+<li>Portas USB frontais, porta de rede</li>
+<li>Velocidade das <strong>ventoinhas</strong> (mudar e <strong>ver</strong>)</li>
+</ul>
+</section><section>
+<h1 id="cmos">CMOS</h1>
+<p>Semicondutor de Óxido Metálico Complementar</p>
+<p>(CMOS — Complementary metal-oxide-semiconductor)</p>
+<blockquote>
+<p>Memória pequena que armazena as informações/variáveis do SETUP</p>
+</blockquote>
+<p><a href="https://www.intel.com.br/content/www/br/pt/support/articles/000025368/processors.html">Leitura complementar</a></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
 <h1 id="uefi">UEFI</h1>
 <p>Unified Extensible Firmware Interface</p>
 <p>Sucessor da BIOS</p>
 <p><img src="images/uefi-logo.svg" alt=""></p>
+</section><section>
+<p><img src="images/uefi-setup-tela.jpg" alt=""></p>
+</section><section>
+<p><img src="images/bios-setup-tela.jpg" alt=""></p>
+</section><section>
+<h1 id="retrocompatibilidade">Retrocompatibilidade</h1>
+<p>Fornece <em>legacy support</em> para os serviços BIOS</p>
+<p>Emula o funcionamento da BIOS (<em>legacy mode</em> / CSM)</p>
+</section><section>
+<h1 id="vantagens">Vantagens</h1>
+<ul>
+<li>Inicialização mais rápida (boot mais rápido)</li>
+<li>Arquitetura transparente ao processador</li>
+<li>Drivers genéricos
+<ul>
+<li>Ambiente pré-SO flexível (<strong>rede</strong>, mouse, etc)</li>
+<li>Acesso remoto</li>
+<li>Permite reparo/diagnóstico sem necessariamente usar um SO</li>
+</ul>
+</li>
+<li>Modo de segurança (secure boot)</li>
+<li>Fim da limitação de tamanho de discos (2TB)
+<ul>
+<li>GPT vs MBR - <strong>partições</strong> (seção anterior)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="reconhecer-o-firmware">Reconhecer o firmware</h1>
+<ul>
+<li><strong>Mouse no Setup</strong> → indício de UEFI, mas <strong>não é prova</strong>: há UEFI com Setup só em modo texto</li>
+<li><strong>Windows</strong>: <code>msinfo32</code> → &ldquo;Modo da BIOS: UEFI&rdquo; ou &ldquo;Herdado&rdquo;</li>
+<li><strong>Linux</strong>: existe <code>/sys/firmware/efi</code> quando o boot foi por UEFI</li>
+</ul>
 </section><section>
 <h1 id="boot-biosmbr">BOOT (BIOS/MBR)</h1>
 <p>Relembrando&hellip;</p>
@@ -338,28 +489,54 @@ Boot0001* Windows Boot Manager
     HD(1,GPT,525a162c-...)  \EFI\Microsoft\Boot\bootmgfw.efi
 </code></pre><p>Cada entrada aponta pelo <strong>PARTUUID da partição</strong> — não pela posição física do disco</p>
 </section><section>
-<h1 id="comparativo">Comparativo</h1>
+<p><a href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface">Leitura complementar</a></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="dois-upgrades">Dois upgrades</h1>
+<p>MBR → GPT (tabela de partição)</p>
+<p>BIOS → UEFI (firmware)</p>
+<p>Quem dá a partida no disco é o firmware, que precisa <strong>entender a tabela</strong> para ler o sistema</p>
+</section><section>
+<h1 id="onde-mora-o-programa-de-partida">Onde mora o programa de partida</h1>
+<p><strong>BIOS + MBR</strong></p>
+<ul>
+<li>Placa-mãe guarda só a <strong>ordem dos dispositivos</strong></li>
+<li>Código que dá a partida: <strong>primeiro setor</strong> do disco (MBR)</li>
+<li>Tabela danificada → falha logo ali</li>
+</ul>
+<p><strong>UEFI + GPT</strong></p>
+<ul>
+<li>Placa-mãe guarda o <strong>caminho exato</strong> do arquivo <code>.efi</code> e a partição</li>
+<li>Arquivo na <strong>ESP</strong>, não em setor bruto</li>
+<li>Trocar o disco de porta não quebra a inicialização</li>
+</ul>
+</section><section>
+<h1 id="biosmbr--uefigpt">BIOS/MBR × UEFI/GPT</h1>
 <table>
   <thead>
       <tr>
           <th></th>
           <th>BIOS/MBR</th>
-          <th>UEFI</th>
+          <th>UEFI/GPT</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>Onde mora o bootloader</td>
-          <td>Setor de boot (código bruto)</td>
-          <td>Arquivo <code>.efi</code> numa partição FAT (ESP)</td>
+          <td>Carregador de boot</td>
+          <td>Setor de boot do disco</td>
+          <td>Arquivo <code>.efi</code> na ESP</td>
       </tr>
       <tr>
           <td>Preferência de boot</td>
-          <td>CMOS/flash, &ldquo;tente o HD antes do CD&rdquo; (grosseira)</td>
-          <td>NVRAM, entradas nomeadas por arquivo</td>
+          <td>Ordem dos dispositivos (grosseira)</td>
+          <td>Entradas nomeadas na NVRAM</td>
       </tr>
       <tr>
-          <td>Editar de dentro do SO</td>
+          <td>Editar pelo SO</td>
           <td>Sem padrão</td>
           <td><code>efibootmgr</code> (Linux), <code>bcdedit</code> (Windows)</td>
       </tr>
@@ -369,98 +546,76 @@ Boot0001* Windows Boot Manager
 <h1 id="por-que-isso-importa">Por que isso importa</h1>
 <p>BIOS/MBR: um único código de boot por disco — trocar de disco, troca o boot junto</p>
 <p>UEFI: entradas <strong>independentes</strong> na NVRAM, cada uma na sua própria ESP — vários discos, vários sistemas, sem &ldquo;pisar no pé&rdquo; um do outro</p>
-<p>(base para a próxima seção: <strong>dual boot</strong>)</p>
-</section><section>
-<p><a href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface">Leitura complementar</a></p>
+<p>(base para o <strong>dual boot</strong>, no fim do deck)</p>
 
 </section>
 </section>
     <section>
 
 <section data-shortcode-section>
-<h1 id="dual-boot">Dual boot</h1>
-<p>Mais de um sistema operacional instalado — tela de escolha no boot</p>
-<p><em>Multi boot</em>, se forem mais de dois</p>
+<h1 id="instalando-o-windows">Instalando o Windows</h1>
+<p>Pré-requisitos · desvio de fluxo · loop · drivers</p>
 </section><section>
-<h1 id="dois-cenários-bem-diferentes">Dois cenários bem diferentes</h1>
-<p><strong>Mesmo disco</strong> — cenário clássico (Windows + Linux, GRUB): a <strong>ordem de instalação importa</strong>, Windows sempre primeiro</p>
-<p><strong>Discos separados</strong> — cada SO no seu próprio NVMe/SSD: cada disco tem sua própria ESP e sua própria entrada na NVRAM</p>
+<h1 id="instalar--levar-dados-para-um-disco">Instalar = levar dados para um disco</h1>
+<p>Dados do SO → partição de um disco</p>
+<p>Origem: rede, USB, CD-ROM, outro disco</p>
+<p>Mais simples e mais usado: <strong>pendrive de instalação</strong></p>
 </section><section>
-<h1 id="um-so-lê-o-sistema-de-arquivo-do-outro">Um SO lê o sistema de arquivo do outro?</h1>
-<p>Windows não lê ext4 de fábrica → software de interface (Linux Reader, <code>wsl --mount</code>)</p>
-<p>Linux lê e grava NTFS (ntfs3)</p>
-<p><strong>Ler/escrever ≠ rodar sobre</strong>: cada SO continua na sua partição</p>
+<h1 id="dois-pré-requisitos">Dois pré-requisitos</h1>
+<p><strong>1. Partição/disco alvo</strong> → <strong>backup</strong> antes: a formatação apaga tudo</p>
+<p><strong>2. Origem dos dados</strong> → pendrive gravado a partir da <strong>ISO</strong> (imagem de um disco), do site oficial</p>
 </section><section>
-<p><img src="images/dual-boot-interface.png" alt=""></p>
+<p><img src="images/instalacao-pre-requisitos.png" alt=""></p>
 </section><section>
-<h1 id="estudo-de-caso-2-nvme-windows--ubuntu">Estudo de caso: 2 NVMe, Windows + Ubuntu</h1>
-<table>
-  <thead>
-      <tr>
-          <th>Disco</th>
-          <th>Conteúdo</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>nvme0n1</code></td>
-          <td>Windows completo: ESP, MSR, <code>C:</code>, recuperação</td>
-      </tr>
-      <tr>
-          <td><code>nvme1n1</code></td>
-          <td>Ubuntu completo: swap, root (ext4), ESP própria</td>
-      </tr>
-  </tbody>
-</table>
-<p>Nenhum arquivo de boot de um sistema está gravado no disco do outro</p>
+<h1 id="gravando-o-pendrive">Gravando o pendrive</h1>
+<p><strong>Rufus</strong>: escolhe <strong>MBR (BIOS)</strong> ou <strong>GPT (UEFI)</strong></p>
+<p>Ferramenta da Microsoft → supõe PC novo com UEFI</p>
+<p>Máquina antiga (BIOS) → <strong>MBR</strong></p>
 </section><section>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>efibootmgr -v
-</span></span></code></pre></div><pre tabindex="0"><code>BootOrder: 0000,0001
-
-Boot0000* Ubuntu                -&gt; nvme1n1p3 (ESP do Ubuntu)
-Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
-</code></pre><p>Duas entradas independentes, cada uma no seu disco — nada em comum</p>
+<h1 id="desvio-de-fluxo">Desvio de fluxo</h1>
+<p>Tecla do boot menu no POST (F9 no laboratório; varia: F8, F11, F12, Esc…)</p>
+<p>Escolher <strong>USB</strong></p>
+<p>&ldquo;Aperte qualquer tecla&rdquo; → aperte <strong>uma vez</strong></p>
 </section><section>
-<h1 id="por-que-isso-é-seguro-e-reversível">Por que isso é seguro (e reversível)</h1>
-<p>Trocar o <code>nvme1n1</code> (disco do Ubuntu) por outro <strong>não toca em nada do Windows</strong></p>
-<p>Recolocar o disco original restaura o Ubuntu, sem reinstalar nada</p>
-<p>Isolamento total — consequência direta de como o UEFI trata boot (seção anterior)</p>
+<p><img src="images/instalacao-desvio-de-fluxo.png" alt=""></p>
 </section><section>
-<h1 id="pegadinha-entrada-pode-sumir-da-nvram">Pegadinha: entrada pode sumir da NVRAM</h1>
-<p>Algumas firmwares &ldquo;limpam&rdquo; entradas órfãs (apontando pra um disco desconectado) durante o POST</p>
-<p><strong>Workaround</strong> — recriar manualmente, com o disco já reconectado:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>sudo efibootmgr --create <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --disk /dev/nvme1n1 --part <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --label <span style="color:#e6db74">&#34;Ubuntu&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --loader <span style="color:#e6db74">&#39;\EFI\ubuntu\shimx64.efi&#39;</span>
-</span></span></code></pre></div><p>Só recria o ponteiro na NVRAM — nenhum arquivo no disco é alterado</p>
+<h1 id="por-que-desviar">Por que desviar?</h1>
+<p>Não se instala &ldquo;de dentro&rdquo; do próprio sistema: ele não apaga a partição em que roda</p>
+<p>É como levantar a cadeira em que você está sentado</p>
+<p>O instalador precisa assumir a máquina <strong>antes</strong> do SO do disco</p>
 </section><section>
-<h1 id="resumo">Resumo</h1>
-<p>Múltiplos SOs, discos separados → múltiplas ESPs, múltiplas entradas na NVRAM</p>
-<p>Identifique discos sempre por <strong>modelo/serial</strong>, nunca pelo nome <code>nvmeXn1</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>lsblk -d -o NAME,SIZE,MODEL,SERIAL
-</span></span></code></pre></div><p>O nome do device depende da ordem de enumeração PCIe — pode mudar entre boots</p>
-
-</section>
-</section>
-    <section>
-
-<section data-shortcode-section>
-<h1 id="formatar">Formatar</h1>
-<p>O que é a operação de formatação?</p>
+<h1 id="exceção-não-regra">Exceção, não regra</h1>
+<p>Boot menu → vale <strong>só nesta partida</strong></p>
+<p>Ordem de boot → variável guardada no <strong>Setup</strong></p>
 </section><section>
-<h1 id="configurar-um-sistema-de-arquivo-numa-partição">Configurar um sistema de arquivo numa partição</h1>
-<p>Colocar uma determinada partição sob determinado sistema de arquivo.</p>
-<p>Exemplo: Formatar partição única de um pendrive para o sistema de arquivo Fat32.</p>
+<h1 id="o-loop-de-instalação">O loop de instalação</h1>
+<p>USB à frente do disco + tecla apertada de novo → instalador reabre</p>
+<p>Depois do 1º reinício: <strong>não aperte nada</strong></p>
 </section><section>
-<h1 id="consequências">Consequências?</h1>
-<p>Todos os arquivos são &lsquo;perdidos&rsquo;</p>
+<p><img src="images/instalacao-ordem-de-boot-loop.png" alt=""></p>
 </section><section>
-<h1 id="é-possível-recuperar-os-dados-de-uma-partição-formatada">É possível recuperar os dados de uma partição formatada?</h1>
-<p>Sim, mas não é possível recuperar estrutura de diretórios.</p>
-<p>(Não é um procedimento garantido)</p>
-<p>(Veremos no próximo curso!)</p>
-<p>Backup dos dados é sempre necessário</p>
+<h1 id="segurança">Segurança</h1>
+<p>USB como prioridade = qualquer pendrive inicializável toma a máquina</p>
+<p>Ao terminar: <strong>devolver a prioridade ao disco</strong></p>
+</section><section>
+<h1 id="drivers-falta-terminar">Drivers: falta terminar</h1>
+<p>Driver = o &ldquo;motorista&rdquo; que conhece o hardware</p>
+<p>Feito pelo <strong>fabricante</strong> do hardware</p>
+<p>Genérico do Windows: funciona, mas não tira o máximo</p>
+</section><section>
+<p><img src="images/driver-interface.png" alt=""></p>
+</section><section>
+<h1 id="windows-pro--home">Windows Pro × Home</h1>
+<p>Mesmo núcleo</p>
+<p>Pro: BitLocker, Hyper-V, Área de Trabalho Remota (como computador acessado), até 2 TB de RAM</p>
+</section><section>
+<h1 id="reinstalar-sem-perder-dados">Reinstalar sem perder dados</h1>
+<p>Partição de dados (D:) = <strong>zona segura</strong></p>
+<p>Copiar o arquivo do usuário para D:</p>
+<p>Reinstalar <strong>só</strong> na partição alvo (C:)</p>
+<p>C: se perde · D: sobrevive</p>
+</section><section>
+<p><img src="images/backup-particao-dados.png" alt=""></p>
 
 </section>
 </section>
@@ -627,10 +782,18 @@ Otimizado para SSDs</p>
 <p>Windows</p>
 </section><section>
 <p><strong>linux</strong></p>
-<p>Arquivos no /dev/</p>
-<p>Partições estendidas -&gt; numeradas de 5 a 16</p>
-<p>Podem pontos de montagens diferentes</p>
-<p>Exemplo: /, /dev/, /usr</p>
+<p>Discos e partições → arquivos em <code>/dev/</code> (<code>sda</code>, <code>sda1</code>…)</p>
+<p>MBR: primárias 1–4 · <strong>lógicas a partir de 5</strong> (dentro da estendida)</p>
+<p>→ <code>sda1</code> + <code>sda5</code>, sem <code>sda2</code>–<code>sda4</code>: normal</p>
+<p>GPT: não há partição lógica</p>
+<p>Partições em pontos de montagem diferentes</p>
+<p>Exemplo: <code>/</code>, <code>/home</code>, <code>/boot</code></p>
+</section><section>
+<h1 id="nomes-no-linux">Nomes no Linux</h1>
+<p><code>/dev/sda</code> → primeiro disco</p>
+<p><code>/dev/sda1</code> → primeira partição</p>
+<p><code>sd</code> = <em>SCSI disk</em>: SATA <strong>e</strong> pendrive USB</p>
+<p>Ordem de ligação muda o nome (<code>sda</code> ↔ <code>sdb</code>); o ID da GPT não muda</p>
 </section><section>
 <p><strong>windows</strong></p>
 <p>Partição estendida mascarada -&gt; não há diferenciação</p>
@@ -645,8 +808,294 @@ Otimizado para SSDs</p>
     <section>
 
 <section data-shortcode-section>
+<h1 id="instalando-o-linux">Instalando o Linux</h1>
+<p>Distribuições · Live CD/USB · <code>/</code> e swap</p>
+</section><section>
+<h1 id="distribuições-distros">Distribuições (&ldquo;distros&rdquo;)</h1>
+<p>Kernel Linux + escolhas de quem monta</p>
+<p>Parte gráfica: KDE, GNOME…</p>
+<p>Pacotes: como instalar programas</p>
+<p>Ubuntu: AA.04 / AA.10 · <strong>LTS</strong> a cada 2 anos (5 anos de suporte)</p>
+</section><section>
+<p><img src="images/linux-distribuicao-camadas.png" alt=""></p>
+</section><section>
+<h1 id="pré-requisitos-os-mesmos-do-windows">Pré-requisitos: os mesmos do Windows</h1>
+<p>Partição/disco alvo → <strong>backup</strong></p>
+<p>Mídia de instalação ← ISO (Canonical, no caso do Ubuntu)</p>
+<p>Desvio de fluxo → boot no pendrive</p>
+</section><section>
+<p><img src="images/live-usb-testar-ou-instalar.png" alt=""></p>
+</section><section>
+<h1 id="live-cdusb-testar-sem-instalar">Live CD/USB: testar sem instalar</h1>
+<p>S.O. completo direto do pendrive — <strong>nada gravado no disco</strong></p>
+<p>Diagnóstico: funciona no Live? → problema de <strong>software</strong></p>
+<p>Não funciona nem no Live? → suspeita de <strong>hardware</strong></p>
+<p>Backup de quem não entra no Windows · malware que se regrava</p>
+</section><section>
+<h1 id="linux-onde-fica-o-barra">Linux: onde fica o barra?</h1>
+<p>Sistema pode ocupar várias partições</p>
+<p>Obrigatório: indicar a <strong>raiz</strong> — ponto de montagem <code>/</code></p>
+<p>Sem <code>/</code> → instalador não avança</p>
+</section><section>
+<h1 id="swap-área-de-troca">Swap: área de troca</h1>
+<p>Memória virtual em partição própria</p>
+<p><strong>Recomendada</strong>, não obrigatória (sem ela: só um aviso)</p>
+<p>Máquinas antigas: igual à RAM ou o dobro (4 GB → 8 GB)</p>
+</section><section>
+<p><img src="images/linux-particionamento-swap-raiz.png" alt=""></p>
+<p>Ubuntu: &ldquo;Algo diferente&rdquo; → apagar partições → swap + <code>/</code> (ext4)</p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="dual-boot">Dual boot</h1>
+<p>Mais de um sistema operacional instalado — tela de escolha no boot</p>
+<p><em>Multi boot</em>, se forem mais de dois</p>
+</section><section>
+<h1 id="dois-cenários-bem-diferentes">Dois cenários bem diferentes</h1>
+<p><strong>Mesmo disco</strong> — cenário clássico (Windows + Linux, GRUB): a <strong>ordem de instalação importa</strong>, Windows sempre primeiro</p>
+<p><strong>Discos separados</strong> — cada SO no seu próprio NVMe/SSD: cada disco tem sua própria ESP e sua própria entrada na NVRAM</p>
+</section><section>
+<h1 id="um-so-lê-o-sistema-de-arquivo-do-outro">Um SO lê o sistema de arquivo do outro?</h1>
+<p>Windows não lê ext4 de fábrica → software de interface (Linux Reader, <code>wsl --mount</code>)</p>
+<p>Linux lê e grava NTFS (ntfs3)</p>
+<p><strong>Ler/escrever ≠ rodar sobre</strong>: cada SO continua na sua partição</p>
+</section><section>
+<p><img src="images/dual-boot-interface.png" alt=""></p>
+</section><section>
+<h1 id="estudo-de-caso-2-nvme-windows--ubuntu">Estudo de caso: 2 NVMe, Windows + Ubuntu</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Disco</th>
+          <th>Conteúdo</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>nvme0n1</code></td>
+          <td>Windows completo: ESP, MSR, <code>C:</code>, recuperação</td>
+      </tr>
+      <tr>
+          <td><code>nvme1n1</code></td>
+          <td>Ubuntu completo: swap, root (ext4), ESP própria</td>
+      </tr>
+  </tbody>
+</table>
+<p>Nenhum arquivo de boot de um sistema está gravado no disco do outro</p>
+</section><section>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>efibootmgr -v
+</span></span></code></pre></div><pre tabindex="0"><code>BootOrder: 0000,0001
+
+Boot0000* Ubuntu                -&gt; nvme1n1p3 (ESP do Ubuntu)
+Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
+</code></pre><p>Duas entradas independentes, cada uma no seu disco — nada em comum</p>
+</section><section>
+<h1 id="por-que-isso-é-seguro-e-reversível">Por que isso é seguro (e reversível)</h1>
+<p>Trocar o <code>nvme1n1</code> (disco do Ubuntu) por outro <strong>não toca em nada do Windows</strong></p>
+<p>Recolocar o disco original restaura o Ubuntu, sem reinstalar nada</p>
+<p>Isolamento total — consequência direta de como o UEFI trata boot (bloco UEFI)</p>
+</section><section>
+<h1 id="pegadinha-entrada-pode-sumir-da-nvram">Pegadinha: entrada pode sumir da NVRAM</h1>
+<p>Algumas firmwares &ldquo;limpam&rdquo; entradas órfãs (apontando pra um disco desconectado) durante o POST</p>
+<p><strong>Workaround</strong> — recriar manualmente, com o disco já reconectado:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>sudo efibootmgr --create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --disk /dev/nvme1n1 --part <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --label <span style="color:#e6db74">&#34;Ubuntu&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --loader <span style="color:#e6db74">&#39;\EFI\ubuntu\shimx64.efi&#39;</span>
+</span></span></code></pre></div><p>Só recria o ponteiro na NVRAM — nenhum arquivo no disco é alterado</p>
+</section><section>
+<h1 id="resumo">Resumo</h1>
+<p>Múltiplos SOs, discos separados → múltiplas ESPs, múltiplas entradas na NVRAM</p>
+<p>Identifique discos sempre por <strong>modelo/serial</strong>, nunca pelo nome <code>nvmeXn1</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>lsblk -d -o NAME,SIZE,MODEL,SERIAL
+</span></span></code></pre></div><p>O nome do device depende da ordem de enumeração PCIe — pode mudar entre boots</p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="inicialização-o-lado-do-hardware">Inicialização: o lado do hardware</h1>
+<p>Do botão de power ao sinal de vídeo</p>
+</section><section>
+<h1 id="troubleshooting">Troubleshooting</h1>
+<ol>
+<li>Energia na tomada</li>
+<li>Cabo de energia</li>
+<li>Equipamento entre o computador e a tomada</li>
+</ol>
+<p><strong>Desktop</strong></p>
+<p><strong>Laptop</strong></p>
+</section><section>
+<h1 id="desktop">Desktop</h1>
+<ol>
+<li>Fonte</li>
+<li>Botão ON/OFF</li>
+<li>Cabo botão ON/OFF</li>
+<li>Conector placa-mãe</li>
+</ol>
+<p><strong>Sinal de vídeo</strong></p>
+</section><section>
+<h1 id="algoritmo">Algoritmo</h1>
+<ol>
+<li>Usuário aperta o botão de power no gabinete</li>
+</ol>
+<p><img src="images/botao-power.png" alt=""></p>
+<p>Curto (contato) entre os dois fios.</p>
+</section><section>
+<h1 id="algoritmo-1">Algoritmo</h1>
+<ol start="2">
+<li>Placa-mãe processa entrada e manda mensagem</li>
+</ol>
+<p><img src="images/jpanel-painel-frontal.jpg" alt="">    <img src="images/painel-frontal-cabos.jpg" alt=""></p>
+<p>(conexão do painel frontal ao botão)</p>
+</section><section>
+<ol start="3">
+<li>Placa-mãe envia sinal a fonte, requisitando alimentação</li>
+</ol>
+<p><img src="images/atx-24-pinos-pinout.gif" alt=""></p>
+<img src="images/conector-atx-foto.jpg" alt="drawing" width="200"/>
+</section><section>
+<ol start="4">
+<li>Fonte atinge tensões de regime, sinaliza FLAG do PWR_OK</li>
+</ol>
+<p><img src="images/pwr-ok-sinal.png" alt=""></p>
+<img src="images/atx-24-pinos-pinout.gif" width="400"/>
+</section><section>
+<ol start="5">
+<li>Procedimentos iniciais da placa-mãe</li>
+</ol>
+<ul>
+<li>Energia disponibilizada para a placae periféricos</li>
+<li>Leds e coolers energizados (retorno visual, sonoro)</li>
+<li><strong>Sinal de vídeo</strong></li>
+</ul>
+</section><section>
+<h1 id="laptop">Laptop</h1>
+<ol>
+<li>Fonte (bateria)</li>
+<li>Conector (trilha) do botão para placa</li>
+</ol>
+<p><strong>Sinal de vídeo</strong></p>
+</section><section>
+<h1 id="protocolo">Protocolo</h1>
+<p>Computador <strong>sem tela</strong>?</p>
+<p>Problema <strong>antes</strong> do sistema operacional: memória, placa-mãe, fonte, processador</p>
+<p>Teste: retirar a RAM ou o processador num computador funcionando e ver a falha no POST</p>
+</section><section>
+<h1 id="sinal-de-vídeo">Sinal de vídeo</h1>
+<p>&ldquo;dar tela&rdquo;</p>
+<p>&ldquo;posting&rdquo;</p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="post-o-lado-do-hardware">POST: o lado do hardware</h1>
+</section><section>
+<h1 id="procedimento-de-inicialização">Procedimento de inicialização</h1>
+<p>POST é o software que comanda a CPU</p>
+<p>Testes de barramento, memória, teclado, drives, vídeo</p>
+</section><section>
+<img src="images/fluxo-boot-computador.jpg" alt="drawing" height="700"/>
+</section><section>
+<h1 id="bips">Bips</h1>
+<p>Variam de acordo com a placa mãe</p>
+<p>Por que bipe? Sem RAM, nem a mensagem de erro pode ser mostrada na tela</p>
+<p>Bipe de &ldquo;passou&rdquo; mas sem imagem → suspeitar do <strong>monitor</strong>, não do computador</p>
+<p><a href="https://findthingy.com/pc-computer-boot-bios-post-beep-codes/">Exemplos</a></p>
+</section><section>
+<h1 id="sem-teclado">Sem teclado</h1>
+<p>&ldquo;Keyboard error or no keyboard present — Press F1 to continue&rdquo;</p>
+<p>Sem teclado não há como mexer no Setup: conecta-se o teclado e aperta-se F1</p>
+</section><section>
+<h1 id="exemplos-de-post">Exemplos de post</h1>
+<p>(vários fabricantes)</p>
+</section><section>
+<h1 id="award-software">Award Software</h1>
+<p><img src="images/award-bios-post.png" alt=""></p>
+</section><section>
+<h1 id="american-megatrends">American Megatrends</h1>
+<p><img src="images/post-ami-p5kpl.jpg" alt=""></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="bios">BIOS</h1>
+<p><strong>B</strong>asic <strong>I</strong>nput <strong>O</strong>utput <strong>S</strong>ystem</p>
+<p>Firmware gravado em memória não volátil na placa-mãe</p>
+<p><strong>Firmware</strong>: software gravado na própria placa-mãe, o primeiro a rodar quando o computador liga</p>
+<p>Trabalha &ldquo;casado&rdquo; com a tabela de partição MBR</p>
+</section><section>
+<h1 id="função-básica">Função básica</h1>
+<p>Suporte básico ao hardware</p>
+<p><strong>Motor de partida</strong>: dá a partida no computador e <strong>entrega o controle</strong> ao sistema operacional</p>
+<p>Não é o sistema operacional</p>
+</section><section>
+<h1 id="programas">Programas</h1>
+<ol>
+<li>
+<p>POST: autoteste do hardware</p>
+</li>
+<li>
+<p>SETUP: configuração e visualização da placa-mãe</p>
+</li>
+<li>
+<p>Ferramentas de diagnóstico</p>
+</li>
+</ol>
+</section><section>
+<h1 id="histórico">Histórico</h1>
+<p>Primeira BIOS era proprietária do IBM/PC</p>
+<p>Foi realizada a engenharia reversa para viabilizar os clones</p>
+<p>Popularização do software</p>
+</section><section>
+<h1 id="obs">OBS</h1>
+<p><em>Antigamente</em>&hellip;</p>
+<p>Fornecia a camada de abstração para teclado, monitor (e outros dispositivos de E/S) e o S.O..</p>
+<p>Hoje os SO modernos fazem chamadas diretas ao hardware (<strong>drivers</strong>)</p>
+</section><section>
+<h1 id="armazenada">Armazenada?</h1>
+<p>Antigamente em memórias ROM</p>
+<p>Atualmente, memórias flash</p>
+<p><strong>principal consequência?</strong></p>
+</section><section>
+<h1 id="atualização-de-bios">Atualização de Bios</h1>
+<p><a href="https://www.intel.com.br/content/www/br/pt/support/articles/000005724/boards-and-kits/desktop-boards.html">aqui</a></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
+<h1 id="clear-cmos">Clear CMOS</h1>
+<p>Valor das variáveis da BIOS guardada em uma memória volátil</p>
+<p>Como apagar configurações da BIOS?</p>
+<p>-&gt; Volta ao modo padrão de fábrica</p>
+<p>(estudaremos melhor junto com a placa-mãe)</p>
+<p><a href="https://dlcdnets.asus.com/pub/ASUS/mb/LGA1150/B85M-E/E9915_B85M-E_Manual_v3_web.pdf">Manual da placa</a></p>
+</section><section>
+<h1 id="jumper">Jumper</h1>
+<p><img src="images/clear-cmos-jumper-dell.jpg" alt=""></p>
+</section><section>
+<h1 id="clear-cmos-1">Clear CMOS</h1>
+<p>Curto</p>
+<p><img src="images/clear-cmos-curto.jpg" alt=""></p>
+
+</section>
+</section>
+    <section>
+
+<section data-shortcode-section>
 <h1 id="referências">Referências</h1>
 <p>Créditos das imagens usadas nesta apresentação</p>
+<p>(todas as imagens estão salvas localmente no deck; os links abaixo apontam para a origem)</p>
 </section><section>
 <h3 id="sistemas-operacionais--clusters">Sistemas operacionais / clusters</h3>
 <ul>
@@ -685,7 +1134,28 @@ Otimizado para SSDs</p>
 <ul>
 <li><a href="https://commons.wikimedia.org/wiki/File:Uefi_logo.svg">Wikimedia Commons — UEFI logo</a></li>
 <li><a href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface">ArchWiki — Unified Extensible Firmware Interface</a></li>
+<li><a href="https://www.targethd.net/wp-content/uploads/2019/07/Screenshot-2019-07-26-at-18.51.34.jpg">targethd.net</a> (Setup UEFI)</li>
+<li><a href="https://s.glbimg.com/po/tt/f/original/2011/10/17/bios.jpg">techtudo / glbimg.com</a> (Setup BIOS)</li>
 </ul>
+</section><section>
+<h3 id="sequência-de-inicialização-post-bios-e-setup">Sequência de inicialização, POST, BIOS e Setup</h3>
+<ul>
+<li><a href="http://fab.academany.org/2018/labs/fablaboulu/students/ari-vuokila/images/Week16/Button.png">Fab Academy — Ari Vuokila</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:JPANEL_MB_IMG_1121.JPG">Wikimedia Commons — JPANEL MB IMG 1121</a> (Hans Haase, CC BY-SA 4.0) — conector do painel frontal</li>
+<li><a href="https://www.smpspowersupply.com/connector_atx_pinout.GIF">smpspowersupply.com — ATX pinout</a></li>
+<li><a href="https://lh3.googleusercontent.com/tEkBRaoHCS899VfE7MJ0Nmkmy0ALADRFKYeIUyda0qh9a7x1Wgs8ZLMmboLQtkV-qlr0cZGMTvGVJcJ4CpxTvvExtp73G6hDviGgIr0SYvNJNCELrmSQXa1obw">lh3.googleusercontent.com</a> (sinal PWR_OK; origem original não identificada)</li>
+<li><a href="https://i.stack.imgur.com/O8mMO.jpg">Stack Exchange</a>, <a href="https://i.stack.imgur.com/1RfLi.jpg">Stack Exchange</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Flow-diagram-computer-booting-sequences.jpg">Wikimedia Commons — Flow diagram computer booting sequences</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:POST_P5KPL_%282%29.jpg">Wikimedia Commons — POST P5KPL (2)</a> (Macic7, domínio público) — tela do POST AMI</li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Legacy_BIOS_boot_process.png">Wikimedia Commons — Legacy BIOS boot process</a></li>
+<li><a href="https://en.wikipedia.org/wiki/BIOS">Wikipedia — Award BIOS (tela)</a></li>
+<li><a href="https://neosmart.net/wiki/operating-system-not-found/">NeoSmart — &ldquo;Operating system not found&rdquo;</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Award_BIOS_setup_utility.png">Wikimedia Commons — Award BIOS setup utility</a></li>
+<li><a href="https://supportkb.dell.com/img/ka02R000000bzCwQAI/ka02R000000bzCwQAI_pt_BR_5.jpeg">Dell — suporte</a>, <a href="https://i.imgur.com/3PkT3Kh.jpg">imgur</a></li>
+</ul>
+</section><section>
+<h3 id="instalação-e-linux">Instalação e Linux</h3>
+<p>Figuras próprias (redesenhos em TikZ das aulas de 19/10, 20/10 e 27/10), as mesmas do livro <em>Organização e Manutenção de Computadores</em>, Cap. 7</p>
 
 </section>
 </section>
