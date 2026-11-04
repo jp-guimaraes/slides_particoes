@@ -849,9 +849,38 @@ Otimizado para SSDs</p>
 <p>Mais de um sistema operacional instalado — tela de escolha no boot</p>
 <p><em>Multi boot</em>, se forem mais de dois</p>
 </section><section>
+<h1 id="onde-o-grub-entra">Onde o GRUB entra</h1>
+<p><img src="images/dual-boot-fluxo-grub.png" alt=""></p>
+<p>Sem escolha → opção padrão após a contagem (ex.: 10 s)</p>
+</section><section>
 <h1 id="dois-cenários-bem-diferentes">Dois cenários bem diferentes</h1>
 <p><strong>Mesmo disco</strong> — cenário clássico (Windows + Linux, GRUB): a <strong>ordem de instalação importa</strong>, Windows sempre primeiro</p>
 <p><strong>Discos separados</strong> — cada SO no seu próprio NVMe/SSD: cada disco tem sua própria ESP e sua própria entrada na NVRAM</p>
+</section><section>
+<h1 id="mesmo-disco-bios--mbr-por-que-windows-primeiro">Mesmo disco (BIOS + MBR): por que Windows primeiro?</h1>
+<p>Instalador do Windows grava <strong>o próprio código</strong> no <strong>código de boot mestre</strong> (1º setor, MBR)</p>
+<p>Não preserva o que estava lá → <strong>GRUB apagado</strong></p>
+<p>Arquivos do Linux continuam no disco — só a &ldquo;porta de entrada&rdquo; sumiu</p>
+<p>GRUB instalado <strong>por último</strong> → encontra o Windows e lista os dois</p>
+</section><section>
+<p><img src="images/dual-boot-ordem-de-instalacao.png" alt=""></p>
+</section><section>
+<h1 id="e-no-uefi--gpt">E no UEFI + GPT?</h1>
+<p>GRUB = arquivo <code>.efi</code> na ESP → Windows <strong>não apaga</strong></p>
+<p>Windows se coloca em 1º na <strong>ordem de boot</strong> (NVRAM)</p>
+<p>Conserto: reordenar entradas (<code>efibootmgr</code>), não reinstalar o GRUB</p>
+</section><section>
+<h1 id="prática-quantas-partições">Prática: quantas partições?</h1>
+<p>Disco MBR → <strong>1 primária</strong> NTFS (Windows) + <strong>1 estendida</strong> (Linux)</p>
+<p>Dentro da estendida: lógica <strong>ext4</strong> (<code>/</code>) + lógica <strong>swap</strong></p>
+<p>Windows em partição <strong>já existente</strong> → não cria Partição Reservada
+— C: fica &ldquo;Sistema, Inicialização, Ativo&rdquo;</p>
+</section><section>
+<p><img src="images/dual-boot-procedimento-mbr.png" alt=""></p>
+</section><section>
+<h1 id="resultado-menu-do-grub">Resultado: menu do GRUB</h1>
+<p><img src="images/grub-menu-dual-boot.png" alt=""></p>
+<p>Windows detectado na 1ª partição: &ldquo;Windows 10 (em /dev/sda1)&rdquo;</p>
 </section><section>
 <h1 id="um-so-lê-o-sistema-de-arquivo-do-outro">Um SO lê o sistema de arquivo do outro?</h1>
 <p>Windows não lê ext4 de fábrica → software de interface (Linux Reader, <code>wsl --mount</code>)</p>
@@ -1151,6 +1180,8 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 </section><section>
 <h3 id="instalação-e-linux">Instalação e Linux</h3>
 <p>Figuras próprias (redesenhos em TikZ das aulas de 19/10, 20/10 e 27/10), as mesmas do livro <em>Organização e Manutenção de Computadores</em>, Cap. 7</p>
+<h3 id="dual-boot-bios--mbr">Dual boot (BIOS + MBR)</h3>
+<p>Figuras próprias (quadro da aula de 03/11/2026) e captura do menu do GRUB em máquina virtual — as mesmas do <a href="https://jp-guimaraes.github.io/livro-organizacao-e-manutencao-de-computadores/livro/07_instalacao_e_manutencao_de_sistemas_operacionais/">livro da disciplina, Cap. 7, §7.5</a></p>
 
 </section>
 </section>
