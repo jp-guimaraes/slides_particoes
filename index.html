@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.160.1">
+	<meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
 <title>Partições</title>
 
@@ -70,11 +70,11 @@
 <p>Software</p>
 <p>Interface entre Hardware e os demais softwares e os usuários</p>
 </section><section>
-<figure><img src="images/camadas-sistema-operacional.png" width="800px">
+<figure><img src="images/camadas-sistema-operacional.png" width="800px"/>
 </figure>
 </section><section>
 <h1 id="camadas-e-plataformas">Camadas e plataformas</h1>
-<figure><img src="images/pilha-plataformas.png" width="560px">
+<figure><img src="images/pilha-plataformas.png" width="560px"/>
 </figure>
 </section><section>
 <h1 id="quais-os-sistemas-operacionais-atuais">quais os sistemas operacionais atuais?</h1>
@@ -171,9 +171,9 @@ Arquivos grandes (média)</p>
 <p>Metadados: Quando o arquivo foi criado, quando foi modificado por último. Quem é o dono do arquivo. Quem tem permissões sobre esse arquivo?  &hellip;</p>
 </section><section>
 <h1 id="visualizando-binários-de-arquivos">Visualizando binários de arquivos</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>hexdump &lt;opção&gt; nome_do_arquivo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>hexdump &lt;opção&gt; nome_do_arquivo
 </span></span></code></pre></div><p>Exemplo</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>hexdump -C imagem.png
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>hexdump -C imagem.png
 </span></span></code></pre></div><p><a href="https://www.samplefiles.com/">Arquivos teste</a></p>
 <p><a href="https://krazydad.com/fieldguidetofiles.php">Leitura complementar</a></p>
 </section><section>
@@ -397,8 +397,21 @@ MBR</p>
 <p><img src="images/award-bios-setup.png" alt=""></p>
 </section><section>
 <h1 id="entrar-no-setup">Entrar no SETUP</h1>
-<p>Post ou manual da placa especifica qual tecla pressionar</p>
-<p>Mais utilizadas: del, f2, f8, f10, f12</p>
+<p><strong>Desvio de fluxo</strong> durante o POST</p>
+<p>POST ou manual da placa indicam a tecla</p>
+<p>Mais comuns: Del, F2, F10, Esc</p>
+<p><img src="images/setup-desvio-de-fluxo.png" alt=""></p>
+</section><section>
+<h1 id="post-rápido-demais">POST rápido demais?</h1>
+<p>Tecla nem aparece na tela (ou aviso oculto no Setup)</p>
+<p>Windows em boot <strong>UEFI</strong>:</p>
+<ul>
+<li>Shift + Reiniciar → Solucionar problemas → Opções avançadas → <strong>Configurações de Firmware UEFI</strong></li>
+<li>ou <code>shutdown /r /fw /t 0</code> (administrador)</li>
+</ul>
+<p>&ldquo;Recado&rdquo; gravado no firmware → próximo boot abre o Setup</p>
+<p>Funciona a distância (acesso remoto, <strong>KVM sobre IP</strong>)</p>
+<p>BIOS legado: só a tecla no POST</p>
 </section><section>
 <h1 id="o-que-mora-no-setup">O que mora no Setup</h1>
 <ul>
@@ -410,7 +423,15 @@ MBR</p>
 <li>Consumo de energia</li>
 <li>Portas USB frontais, porta de rede</li>
 <li>Velocidade das <strong>ventoinhas</strong> (mudar e <strong>ver</strong>)</li>
+<li><strong>Ligar sozinho</strong> em dia/horário programado (relógio da placa)</li>
 </ul>
+</section><section>
+<h1 id="exemplo-backup-automático">Exemplo: backup automático</h1>
+<p>RTC (<em>Real Time Clock</em>): relógio da placa-mãe</p>
+<p>Setup: <em>RTC Alarm</em> / <em>Resume by Alarm</em> / <em>BIOS Power-On</em></p>
+<p>Domingo, 3h → liga sozinho → sincroniza → desliga</p>
+<p>Data/hora errada → tarefa não dispara</p>
+<p><img src="images/setup-configuracoes.png" alt=""></p>
 </section><section>
 <h1 id="cmos">CMOS</h1>
 <p>Semicondutor de Óxido Metálico Complementar</p>
@@ -418,7 +439,13 @@ MBR</p>
 <blockquote>
 <p>Memória pequena que armazena as informações/variáveis do SETUP</p>
 </blockquote>
+<p>Memória <strong>volátil</strong> → mantida por uma <strong>bateria</strong> (CR2032, 3 V)</p>
 <p><a href="https://www.intel.com.br/content/www/br/pt/support/articles/000025368/processors.html">Leitura complementar</a></p>
+</section><section>
+<h1 id="bateria-gasta">Bateria gasta</h1>
+<p>Sintoma: POST para com aviso de data/hora perdida (&ldquo;press F1…&rdquo;)</p>
+<p>Configurações perdidas a cada desligamento</p>
+<p>Reparo: trocar a bateria + reconfigurar no Setup</p>
 
 </section>
 </section>
@@ -479,7 +506,7 @@ MBR</p>
 <p>Guarda as <strong>entradas de boot</strong> (<code>Boot0000</code>, <code>Boot0001</code>, &hellip;) e o <code>BootOrder</code></p>
 <p>Cada entrada é um ponteiro: &ldquo;carregue tal arquivo <code>.efi</code>, de tal partição&rdquo;</p>
 </section><section>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>efibootmgr -v
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>efibootmgr -v
 </span></span></code></pre></div><pre tabindex="0"><code>BootOrder: 0000,0001
 
 Boot0000* Ubuntu
@@ -517,30 +544,30 @@ Boot0001* Windows Boot Manager
 </section><section>
 <h1 id="biosmbr--uefigpt">BIOS/MBR × UEFI/GPT</h1>
 <table>
-  <thead>
-      <tr>
-          <th></th>
-          <th>BIOS/MBR</th>
-          <th>UEFI/GPT</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Carregador de boot</td>
-          <td>Setor de boot do disco</td>
-          <td>Arquivo <code>.efi</code> na ESP</td>
-      </tr>
-      <tr>
-          <td>Preferência de boot</td>
-          <td>Ordem dos dispositivos (grosseira)</td>
-          <td>Entradas nomeadas na NVRAM</td>
-      </tr>
-      <tr>
-          <td>Editar pelo SO</td>
-          <td>Sem padrão</td>
-          <td><code>efibootmgr</code> (Linux), <code>bcdedit</code> (Windows)</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th></th>
+<th>BIOS/MBR</th>
+<th>UEFI/GPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carregador de boot</td>
+<td>Setor de boot do disco</td>
+<td>Arquivo <code>.efi</code> na ESP</td>
+</tr>
+<tr>
+<td>Preferência de boot</td>
+<td>Ordem dos dispositivos (grosseira)</td>
+<td>Entradas nomeadas na NVRAM</td>
+</tr>
+<tr>
+<td>Editar pelo SO</td>
+<td>Sem padrão</td>
+<td><code>efibootmgr</code> (Linux), <code>bcdedit</code> (Windows)</td>
+</tr>
+</tbody>
 </table>
 </section><section>
 <h1 id="por-que-isso-importa">Por que isso importa</h1>
@@ -653,34 +680,34 @@ Boot0001* Windows Boot Manager
 </section><section>
 <h1 id="comparativo-fat">Comparativo FAT</h1>
 <table>
-  <thead>
-      <tr>
-          <th>Atributo</th>
-          <th>Fat 12</th>
-          <th>Fat 16</th>
-          <th>Fat 32</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Máx. de clusters</td>
-          <td>≈ 4 mil (2^12)</td>
-          <td>≈ 65 mil (2^16)</td>
-          <td>≈ 268 milhões (2^28)</td>
-      </tr>
-      <tr>
-          <td>Tamanho do cluster</td>
-          <td>512B até 4KB</td>
-          <td>2KB até 32KB</td>
-          <td>512B até 32KB</td>
-      </tr>
-      <tr>
-          <td>Tamanho máximo do volume</td>
-          <td>16 a 32 MB</td>
-          <td>2 GB</td>
-          <td>2 TB</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Fat 12</th>
+<th>Fat 16</th>
+<th>Fat 32</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Máx. de clusters</td>
+<td>≈ 4 mil (2^12)</td>
+<td>≈ 65 mil (2^16)</td>
+<td>≈ 268 milhões (2^28)</td>
+</tr>
+<tr>
+<td>Tamanho do cluster</td>
+<td>512B até 4KB</td>
+<td>2KB até 32KB</td>
+<td>512B até 32KB</td>
+</tr>
+<tr>
+<td>Tamanho máximo do volume</td>
+<td>16 a 32 MB</td>
+<td>2 GB</td>
+<td>2 TB</td>
+</tr>
+</tbody>
 </table>
 <p>Valores típicos</p>
 <p>Endereço do cluster é o número do cluster no disco (simples)</p>
@@ -896,26 +923,26 @@ Otimizado para SSDs</p>
 </section><section>
 <h1 id="estudo-de-caso-2-nvme-windows--ubuntu">Estudo de caso: 2 NVMe, Windows + Ubuntu</h1>
 <table>
-  <thead>
-      <tr>
-          <th>Disco</th>
-          <th>Conteúdo</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>nvme0n1</code></td>
-          <td>Windows completo: ESP, MSR, <code>C:</code>, recuperação</td>
-      </tr>
-      <tr>
-          <td><code>nvme1n1</code></td>
-          <td>Ubuntu completo: swap, root (ext4), ESP própria</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>Disco</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nvme0n1</code></td>
+<td>Windows completo: ESP, MSR, <code>C:</code>, recuperação</td>
+</tr>
+<tr>
+<td><code>nvme1n1</code></td>
+<td>Ubuntu completo: swap, root (ext4), ESP própria</td>
+</tr>
+</tbody>
 </table>
 <p>Nenhum arquivo de boot de um sistema está gravado no disco do outro</p>
 </section><section>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>efibootmgr -v
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>efibootmgr -v
 </span></span></code></pre></div><pre tabindex="0"><code>BootOrder: 0000,0001
 
 Boot0000* Ubuntu                -&gt; nvme1n1p3 (ESP do Ubuntu)
@@ -930,16 +957,16 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <h1 id="pegadinha-entrada-pode-sumir-da-nvram">Pegadinha: entrada pode sumir da NVRAM</h1>
 <p>Algumas firmwares &ldquo;limpam&rdquo; entradas órfãs (apontando pra um disco desconectado) durante o POST</p>
 <p><strong>Workaround</strong> — recriar manualmente, com o disco já reconectado:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>sudo efibootmgr --create <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --disk /dev/nvme1n1 --part <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --label <span style="color:#e6db74">&#34;Ubuntu&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --loader <span style="color:#e6db74">&#39;\EFI\ubuntu\shimx64.efi&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>sudo efibootmgr --create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --disk /dev/nvme1n1 --part <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --label <span style="color:#e6db74">&#34;Ubuntu&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --loader <span style="color:#e6db74">&#39;\EFI\ubuntu\shimx64.efi&#39;</span>
 </span></span></code></pre></div><p>Só recria o ponteiro na NVRAM — nenhum arquivo no disco é alterado</p>
 </section><section>
 <h1 id="resumo">Resumo</h1>
 <p>Múltiplos SOs, discos separados → múltiplas ESPs, múltiplas entradas na NVRAM</p>
 <p>Identifique discos sempre por <strong>modelo/serial</strong>, nunca pelo nome <code>nvmeXn1</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>lsblk -d -o NAME,SIZE,MODEL,SERIAL
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape><span style="display:flex;"><span>lsblk -d -o NAME,SIZE,MODEL,SERIAL
 </span></span></code></pre></div><p>O nome do device depende da ordem de enumeração PCIe — pode mudar entre boots</p>
 
 </section>
@@ -1107,7 +1134,7 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <p>Valor das variáveis da BIOS guardada em uma memória volátil</p>
 <p>Como apagar configurações da BIOS?</p>
 <p>-&gt; Volta ao modo padrão de fábrica</p>
-<p>(estudaremos melhor junto com a placa-mãe)</p>
+<p>Valores padrão: estão no <strong>Setup</strong> (firmware), não na CMOS</p>
 <p><a href="https://dlcdnets.asus.com/pub/ASUS/mb/LGA1150/B85M-E/E9915_B85M-E_Manual_v3_web.pdf">Manual da placa</a></p>
 </section><section>
 <h1 id="jumper">Jumper</h1>
@@ -1116,6 +1143,12 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <h1 id="clear-cmos-1">Clear CMOS</h1>
 <p>Curto</p>
 <p><img src="images/clear-cmos-curto.jpg" alt=""></p>
+</section><section>
+<h1 id="como-fazer">Como fazer</h1>
+<p><strong>Jumper/botão</strong> (manual: Ctrl+F &ldquo;CMOS&rdquo; → CLR_CMOS)</p>
+<p>ou <strong>tirar a bateria</strong>, fora da tomada, esperar alguns minutos (capacitores)</p>
+<p>Placa UEFI nova: prefira o jumper (parte das configurações na flash)</p>
+<p><strong>Cuidado:</strong> jumper esquecido na posição de limpeza → placa <strong>não liga</strong></p>
 
 </section>
 </section>
