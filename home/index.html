@@ -362,7 +362,7 @@ MBR</p>
 <h1 id="post-o-exame-de-sangue">POST: o &ldquo;exame de sangue&rdquo;</h1>
 <p>Feito toda vez que o computador liga</p>
 <p>Passa <strong>só</strong> quem tem todos os componentes fundamentais funcionando (um &ldquo;E&rdquo; lógico)</p>
-<p>Sem RAM, sem processador ou placa-mãe danificada: o POST não passa e o computador não liga</p>
+<p>Sem RAM, sem processador ou placa-mãe danificada: o POST não se completa e o computador não dá tela (sem RAM: bipes)</p>
 </section><section>
 <h1 id="após-testes">Após testes</h1>
 <p>Passar controle da CPU para próximo programa</p>
@@ -392,8 +392,21 @@ MBR</p>
 <p><img src="images/award-bios-setup.png" alt=""></p>
 </section><section>
 <h1 id="entrar-no-setup">Entrar no SETUP</h1>
-<p>Post ou manual da placa especifica qual tecla pressionar</p>
-<p>Mais utilizadas: del, f2, f8, f10, f12</p>
+<p><strong>Desvio de fluxo</strong> durante o POST</p>
+<p>POST ou manual da placa indicam a tecla</p>
+<p>Mais comuns: Del, F2, F10, Esc</p>
+<p><img src="images/setup-desvio-de-fluxo.png" alt=""></p>
+</section><section>
+<h1 id="post-rápido-demais">POST rápido demais?</h1>
+<p>Tecla nem aparece na tela (ou aviso oculto no Setup)</p>
+<p>Windows em boot <strong>UEFI</strong>:</p>
+<ul>
+<li>Shift + Reiniciar → Solucionar problemas → Opções avançadas → <strong>Configurações de Firmware UEFI</strong></li>
+<li>ou <code>shutdown /r /fw /t 0</code> (administrador)</li>
+</ul>
+<p>&ldquo;Recado&rdquo; gravado no firmware → próximo boot abre o Setup</p>
+<p>Funciona a distância (acesso remoto, <strong>KVM sobre IP</strong>)</p>
+<p>BIOS legado: só a tecla no POST</p>
 </section><section>
 <h1 id="o-que-mora-no-setup">O que mora no Setup</h1>
 <ul>
@@ -405,7 +418,15 @@ MBR</p>
 <li>Consumo de energia</li>
 <li>Portas USB frontais, porta de rede</li>
 <li>Velocidade das <strong>ventoinhas</strong> (mudar e <strong>ver</strong>)</li>
+<li><strong>Ligar sozinho</strong> em dia/horário programado (relógio da placa)</li>
 </ul>
+</section><section>
+<h1 id="exemplo-backup-automático">Exemplo: backup automático</h1>
+<p>RTC (<em>Real Time Clock</em>): relógio da placa-mãe</p>
+<p>Setup: <em>RTC Alarm</em> / <em>Resume by Alarm</em> / <em>BIOS Power-On</em></p>
+<p>Domingo, 3h → liga sozinho → sincroniza → desliga</p>
+<p>Data/hora errada → tarefa não dispara</p>
+<p><img src="images/setup-configuracoes.png" alt=""></p>
 </section><section>
 <h1 id="cmos">CMOS</h1>
 <p>Semicondutor de Óxido Metálico Complementar</p>
@@ -413,7 +434,13 @@ MBR</p>
 <blockquote>
 <p>Memória pequena que armazena as informações/variáveis do SETUP</p>
 </blockquote>
+<p>Memória <strong>volátil</strong> → mantida por uma <strong>bateria</strong> (CR2032, 3 V)</p>
 <p><a href="https://www.intel.com.br/content/www/br/pt/support/articles/000025368/processors.html">Leitura complementar</a></p>
+</section><section>
+<h1 id="bateria-gasta">Bateria gasta</h1>
+<p>Sintoma: POST para com aviso de data/hora perdida (&ldquo;press F1…&rdquo;)</p>
+<p>Configurações perdidas a cada desligamento</p>
+<p>Reparo: trocar a bateria + reconfigurar no Setup</p>
 
 </section>
 </section>
@@ -599,6 +626,13 @@ Boot0001* Windows Boot Manager
 <p>Genérico do Windows: funciona, mas não tira o máximo</p>
 </section><section>
 <p><img src="images/driver-interface.png" alt=""></p>
+</section><section>
+<h1 id="instalar-um-driver--">Instalar um driver = ?</h1>
+<p><code>setup.exe</code> → executado: disco → <strong>RAM</strong></p>
+<p>Grava no <strong>C:</strong> arquivos + rotinas de inicialização</p>
+<p>Próximo boot: driver carregado <strong>junto com o SO</strong></p>
+<p>Por isso: <strong>reiniciar</strong></p>
+<p>Origem do instalador? Tanto faz: D:, pendrive, internet</p>
 </section><section>
 <h1 id="windows-pro--home">Windows Pro × Home</h1>
 <p>Mesmo núcleo</p>
@@ -945,6 +979,14 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <h1 id="inicialização-o-lado-do-hardware">Inicialização: o lado do hardware</h1>
 <p>Do botão de power ao sinal de vídeo</p>
 </section><section>
+<h1 id="peças-novas--liga">Peças novas = liga?</h1>
+<p>Fonte, placa-mãe, processador e RAM novos: <strong>não</strong> é garantia</p>
+<ul>
+<li>Peças precisam estar <strong>conectadas</strong></li>
+<li>Processador <strong>sem vídeo integrado</strong> e sem placa de vídeo → sem tela</li>
+<li>Placa-mãe <strong>não reconhece</strong> o processador → atualizar firmware (memória <em>flash</em>)</li>
+</ul>
+</section><section>
 <h1 id="troubleshooting">Troubleshooting</h1>
 <ol>
 <li>Energia na tomada</li>
@@ -967,8 +1009,16 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <ol>
 <li>Usuário aperta o botão de power no gabinete</li>
 </ol>
-<p><img src="images/botao-power.png" alt=""></p>
-<p>Curto (contato) entre os dois fios.</p>
+<p><img src="images/botao-power-momentaneo.png" alt=""></p>
+<p>Botão <strong>momentâneo</strong> (mola): curto (contato) entre os dois fios só enquanto apertado</p>
+</section><section>
+<h1 id="testar-o-botão">Testar o botão</h1>
+<p>Multímetro em <strong>continuidade</strong></p>
+<ul>
+<li>Solto: <strong>não</strong> apita</li>
+<li>Apertado: apita</li>
+<li>Apita solto? Botão com defeito</li>
+</ul>
 </section><section>
 <h1 id="algoritmo-1">Algoritmo</h1>
 <ol start="2">
@@ -1102,7 +1152,7 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <p>Valor das variáveis da BIOS guardada em uma memória volátil</p>
 <p>Como apagar configurações da BIOS?</p>
 <p>-&gt; Volta ao modo padrão de fábrica</p>
-<p>(estudaremos melhor junto com a placa-mãe)</p>
+<p>Valores padrão: estão no <strong>Setup</strong> (firmware), não na CMOS</p>
 <p><a href="https://dlcdnets.asus.com/pub/ASUS/mb/LGA1150/B85M-E/E9915_B85M-E_Manual_v3_web.pdf">Manual da placa</a></p>
 </section><section>
 <h1 id="jumper">Jumper</h1>
@@ -1111,6 +1161,12 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <h1 id="clear-cmos-1">Clear CMOS</h1>
 <p>Curto</p>
 <p><img src="images/clear-cmos-curto.jpg" alt=""></p>
+</section><section>
+<h1 id="como-fazer">Como fazer</h1>
+<p><strong>Jumper/botão</strong> (manual: Ctrl+F &ldquo;CMOS&rdquo; → CLR_CMOS)</p>
+<p>ou <strong>tirar a bateria</strong>, fora da tomada, esperar alguns minutos (capacitores)</p>
+<p>Placa UEFI nova: prefira o jumper (parte das configurações na flash)</p>
+<p><strong>Cuidado:</strong> jumper esquecido na posição de limpeza → placa <strong>não liga</strong></p>
 
 </section>
 </section>
@@ -1164,7 +1220,7 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 </section><section>
 <h3 id="sequência-de-inicialização-post-bios-e-setup">Sequência de inicialização, POST, BIOS e Setup</h3>
 <ul>
-<li><a href="http://fab.academany.org/2018/labs/fablaboulu/students/ari-vuokila/images/Week16/Button.png">Fab Academy — Ari Vuokila</a></li>
+<li><a href="http://fab.academany.org/2018/labs/fablaboulu/students/ari-vuokila/images/Week16/Button.png">Fab Academy — Ari Vuokila</a> — diagrama original do botão momentâneo; redesenhado em português (<code>botao-power-momentaneo.png</code>, também no livro, Cap. 8, §8.3.1)</li>
 <li><a href="https://commons.wikimedia.org/wiki/File:JPANEL_MB_IMG_1121.JPG">Wikimedia Commons — JPANEL MB IMG 1121</a> (Hans Haase, CC BY-SA 4.0) — conector do painel frontal</li>
 <li><a href="https://www.smpspowersupply.com/connector_atx_pinout.GIF">smpspowersupply.com — ATX pinout</a></li>
 <li><a href="https://lh3.googleusercontent.com/tEkBRaoHCS899VfE7MJ0Nmkmy0ALADRFKYeIUyda0qh9a7x1Wgs8ZLMmboLQtkV-qlr0cZGMTvGVJcJ4CpxTvvExtp73G6hDviGgIr0SYvNJNCELrmSQXa1obw">lh3.googleusercontent.com</a> (sinal PWR_OK; origem original não identificada)</li>
