@@ -367,7 +367,7 @@ MBR</p>
 <h1 id="post-o-exame-de-sangue">POST: o &ldquo;exame de sangue&rdquo;</h1>
 <p>Feito toda vez que o computador liga</p>
 <p>Passa <strong>só</strong> quem tem todos os componentes fundamentais funcionando (um &ldquo;E&rdquo; lógico)</p>
-<p>Sem RAM, sem processador ou placa-mãe danificada: o POST não passa e o computador não liga</p>
+<p>Sem RAM, sem processador ou placa-mãe danificada: o POST não se completa e o computador não dá tela (sem RAM: bipes)</p>
 </section><section>
 <h1 id="após-testes">Após testes</h1>
 <p>Passar controle da CPU para próximo programa</p>
@@ -631,6 +631,13 @@ Boot0001* Windows Boot Manager
 <p>Genérico do Windows: funciona, mas não tira o máximo</p>
 </section><section>
 <p><img src="images/driver-interface.png" alt=""></p>
+</section><section>
+<h1 id="instalar-um-driver--">Instalar um driver = ?</h1>
+<p><code>setup.exe</code> → executado: disco → <strong>RAM</strong></p>
+<p>Grava no <strong>C:</strong> arquivos + rotinas de inicialização</p>
+<p>Próximo boot: driver carregado <strong>junto com o SO</strong></p>
+<p>Por isso: <strong>reiniciar</strong></p>
+<p>Origem do instalador? Tanto faz: D:, pendrive, internet</p>
 </section><section>
 <h1 id="windows-pro--home">Windows Pro × Home</h1>
 <p>Mesmo núcleo</p>
@@ -977,6 +984,14 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <h1 id="inicialização-o-lado-do-hardware">Inicialização: o lado do hardware</h1>
 <p>Do botão de power ao sinal de vídeo</p>
 </section><section>
+<h1 id="peças-novas--liga">Peças novas = liga?</h1>
+<p>Fonte, placa-mãe, processador e RAM novos: <strong>não</strong> é garantia</p>
+<ul>
+<li>Peças precisam estar <strong>conectadas</strong></li>
+<li>Processador <strong>sem vídeo integrado</strong> e sem placa de vídeo → sem tela</li>
+<li>Placa-mãe <strong>não reconhece</strong> o processador → atualizar firmware (memória <em>flash</em>)</li>
+</ul>
+</section><section>
 <h1 id="troubleshooting">Troubleshooting</h1>
 <ol>
 <li>Energia na tomada</li>
@@ -999,8 +1014,16 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <ol>
 <li>Usuário aperta o botão de power no gabinete</li>
 </ol>
-<p><img src="images/botao-power.png" alt=""></p>
-<p>Curto (contato) entre os dois fios.</p>
+<p><img src="images/botao-power-momentaneo.png" alt=""></p>
+<p>Botão <strong>momentâneo</strong> (mola): curto (contato) entre os dois fios só enquanto apertado</p>
+</section><section>
+<h1 id="testar-o-botão">Testar o botão</h1>
+<p>Multímetro em <strong>continuidade</strong></p>
+<ul>
+<li>Solto: <strong>não</strong> apita</li>
+<li>Apertado: apita</li>
+<li>Apita solto? Botão com defeito</li>
+</ul>
 </section><section>
 <h1 id="algoritmo-1">Algoritmo</h1>
 <ol start="2">
@@ -1202,7 +1225,7 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 </section><section>
 <h3 id="sequência-de-inicialização-post-bios-e-setup">Sequência de inicialização, POST, BIOS e Setup</h3>
 <ul>
-<li><a href="http://fab.academany.org/2018/labs/fablaboulu/students/ari-vuokila/images/Week16/Button.png">Fab Academy — Ari Vuokila</a></li>
+<li><a href="http://fab.academany.org/2018/labs/fablaboulu/students/ari-vuokila/images/Week16/Button.png">Fab Academy — Ari Vuokila</a> — diagrama original do botão momentâneo; redesenhado em português (<code>botao-power-momentaneo.png</code>, também no livro, Cap. 8, §8.3.1)</li>
 <li><a href="https://commons.wikimedia.org/wiki/File:JPANEL_MB_IMG_1121.JPG">Wikimedia Commons — JPANEL MB IMG 1121</a> (Hans Haase, CC BY-SA 4.0) — conector do painel frontal</li>
 <li><a href="https://www.smpspowersupply.com/connector_atx_pinout.GIF">smpspowersupply.com — ATX pinout</a></li>
 <li><a href="https://lh3.googleusercontent.com/tEkBRaoHCS899VfE7MJ0Nmkmy0ALADRFKYeIUyda0qh9a7x1Wgs8ZLMmboLQtkV-qlr0cZGMTvGVJcJ4CpxTvvExtp73G6hDviGgIr0SYvNJNCELrmSQXa1obw">lh3.googleusercontent.com</a> (sinal PWR_OK; origem original não identificada)</li>

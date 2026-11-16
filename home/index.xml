@@ -75,7 +75,7 @@
       <link>https://jp-guimaraes.github.io/slides_particoes/home/05_01_post/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jp-guimaraes.github.io/slides_particoes/home/05_01_post/</guid>
-      <description>POST Power-on self-test&#xA;Auto teste de inicialização&#xA;POST Rotina realizada por software/firmware na placa-mãe&#xA;Sequência de testes de hardware realizada pela BIOS&#xA;Sistema está operacional?&#xA;Informação visual e sonora de resposta&#xA;POST: o &amp;ldquo;exame de sangue&amp;rdquo; Feito toda vez que o computador liga&#xA;Passa só quem tem todos os componentes fundamentais funcionando (um &amp;ldquo;E&amp;rdquo; lógico)&#xA;Sem RAM, sem processador ou placa-mãe danificada: o POST não passa e o computador não liga</description>
+      <description>POST Power-on self-test&#xA;Auto teste de inicialização&#xA;POST Rotina realizada por software/firmware na placa-mãe&#xA;Sequência de testes de hardware realizada pela BIOS&#xA;Sistema está operacional?&#xA;Informação visual e sonora de resposta&#xA;POST: o &amp;ldquo;exame de sangue&amp;rdquo; Feito toda vez que o computador liga&#xA;Passa só quem tem todos os componentes fundamentais funcionando (um &amp;ldquo;E&amp;rdquo; lógico)&#xA;Sem RAM, sem processador ou placa-mãe danificada: o POST não se completa e o computador não dá tela (sem RAM: bipes)</description>
     </item>
     <item>
       <title></title>
@@ -138,7 +138,7 @@
       <link>https://jp-guimaraes.github.io/slides_particoes/home/11_00_inicializacao_hardware/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jp-guimaraes.github.io/slides_particoes/home/11_00_inicializacao_hardware/</guid>
-      <description>Inicialização: o lado do hardware Do botão de power ao sinal de vídeo&#xA;Troubleshooting Energia na tomada Cabo de energia Equipamento entre o computador e a tomada Desktop&#xA;Laptop&#xA;Desktop Fonte Botão ON/OFF Cabo botão ON/OFF Conector placa-mãe Sinal de vídeo&#xA;Algoritmo Usuário aperta o botão de power no gabinete Curto (contato) entre os dois fios.&#xA;Algoritmo Placa-mãe processa entrada e manda mensagem (conexão do painel frontal ao botão)</description>
+      <description>Inicialização: o lado do hardware Do botão de power ao sinal de vídeo&#xA;Peças novas = liga? Fonte, placa-mãe, processador e RAM novos: não é garantia&#xA;Peças precisam estar conectadas Processador sem vídeo integrado e sem placa de vídeo → sem tela Placa-mãe não reconhece o processador → atualizar firmware (memória flash) Troubleshooting Energia na tomada Cabo de energia Equipamento entre o computador e a tomada Desktop&#xA;Laptop&#xA;Desktop Fonte Botão ON/OFF Cabo botão ON/OFF Conector placa-mãe Sinal de vídeo</description>
     </item>
     <item>
       <title></title>
