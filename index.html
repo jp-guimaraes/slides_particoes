@@ -1042,12 +1042,24 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <li>Apita solto? Botão com defeito</li>
 </ul>
 </section><section>
+<h1 id="manual-da-placa-mãe">Manual da placa-mãe</h1>
+<p>Melhor amigo do técnico</p>
+<p>Nome impresso na placa → site do fabricante → <strong>manual do usuário</strong></p>
+<p>Ex.: ASUS TUF Gaming <strong>B550</strong>M-PLUS → B550 = chipset</p>
+<p>Mapa da placa · energia <strong>24 + 8 pinos</strong> · canais A/B (dual channel) · <strong>painel frontal</strong></p>
+</section><section>
 <h1 id="algoritmo-1">Algoritmo</h1>
 <ol start="2">
 <li>Placa-mãe processa entrada e manda mensagem</li>
 </ol>
 <p><img src="images/jpanel-painel-frontal.jpg" alt="">    <img src="images/painel-frontal-cabos.jpg" alt=""></p>
 <p>(conexão do painel frontal ao botão)</p>
+</section><section>
+<h1 id="painel-frontal-polaridade">Painel frontal: polaridade</h1>
+<p><img src="images/painel-frontal-pinos.png" alt=""></p>
+<p>LED = diodo → <strong>com polaridade</strong> (+ no +; invertido: só não acende)</p>
+<p>Botão → <strong>sem polaridade</strong></p>
+<p>Pinagem: manual (busca &ldquo;panel&rdquo;) ou serigrafia</p>
 </section><section>
 <ol start="3">
 <li>Placa-mãe envia sinal a fonte, requisitando alimentação</li>
@@ -1076,6 +1088,13 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <li>Conector (trilha) do botão para placa</li>
 </ol>
 <p><strong>Sinal de vídeo</strong></p>
+</section><section>
+<h1 id="abrir-o-laptop">Abrir o laptop</h1>
+<p>Parafusos <strong>escondidos</strong> (pés de borracha) · chave de <strong>precisão</strong></p>
+<p>Tampa presa por <strong>presilhas</strong> → palheta <strong>plástica</strong> (metal marca)</p>
+<p>Difícil? <strong>Parafuso escondido</strong> → não force</p>
+<p>Por dentro: bateria · fonte externa · <em>heat pipe</em></p>
+<p>SSD M.2: 1 parafuso, levanta e desliza</p>
 </section><section>
 <h1 id="protocolo">Protocolo</h1>
 <p>Computador <strong>sem tela</strong>?</p>
@@ -1260,6 +1279,8 @@ Boot0001* Windows Boot Manager  -&gt; nvme0n1p1 (ESP do Windows)
 <p>Figuras próprias (redesenhos em TikZ das aulas de 19/10, 20/10 e 27/10), as mesmas do livro <em>Organização e Manutenção de Computadores</em>, Cap. 7</p>
 <h3 id="dual-boot-bios--mbr">Dual boot (BIOS + MBR)</h3>
 <p>Figuras próprias (quadro da aula de 03/11/2026) e captura do menu do GRUB em máquina virtual — as mesmas do <a href="https://jp-guimaraes.github.io/livro-organizacao-e-manutencao-de-computadores/livro/07_instalacao_e_manutencao_de_sistemas_operacionais/">livro da disciplina, Cap. 7, §7.5</a></p>
+<h3 id="painel-frontal">Painel frontal</h3>
+<p>Figura &ldquo;Painel frontal: polaridade&rdquo;: figura própria (TikZ), a mesma do livro da disciplina, Cap. 11, §11.5.1</p>
 
 </section>
 </section>
